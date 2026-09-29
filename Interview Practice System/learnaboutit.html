@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Learn Java</title>
+<style>
+  :root{
+    --roast-900:#0d0710;
+    --roast-800:#170e20;
+    --roast-700:#231531;
+    --cream:#ece6f5;
+    --cream-dim:#b8a9cf;
+    --crema:#9b5de5;
+    --crema-soft:#c9a6ff;
+    --mint:#7f5af0;
+    --line: rgba(236,230,245,0.12);
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 500px at 15% -10%, rgba(155,93,229,0.20), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(127,90,240,0.14), transparent 55%),
+      var(--roast-900);
+    color:var(--cream);
+    font-family: 'Iowan Old Style','Georgia','Noto Serif Devanagari', serif;
+    min-height:100vh;
+  }
+
+  .grain{
+    position:fixed; inset:0; pointer-events:none; opacity:0.05; mix-blend-mode:overlay;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, #fff 2px, #fff 3px);
+  }
+
+  header{
+    position:relative;
+    padding: 64px 24px 48px;
+    text-align:center;
+    overflow:hidden;
+  }
+
+  .steam{
+    position:absolute;
+    top:-10px; left:50%; transform:translateX(-50%);
+    width:220px; height:120px;
+    opacity:0.5;
+    pointer-events:none;
+  }
+
+  .steam path{
+    fill:none;
+    stroke:var(--crema-soft);
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-dasharray: 140;
+    stroke-dashoffset: 140;
+    animation: rise 5s ease-in-out infinite;
+  }
+  .steam path:nth-child(2){ animation-delay:1.1s; opacity:0.7; }
+  .steam path:nth-child(3){ animation-delay:2.2s; opacity:0.5; }
+
+  @keyframes rise{
+    0%{ stroke-dashoffset:140; opacity:0; }
+    15%{ opacity:0.8; }
+    70%{ stroke-dashoffset:0; opacity:0.35; }
+    100%{ stroke-dashoffset:-40; opacity:0; }
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono','Courier New',monospace;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--mint);
+    margin:0 0 18px;
+  }
+
+  h1{
+    font-size: clamp(34px, 6.5vw, 64px);
+    line-height:1.05;
+    margin:0;
+    font-weight:700;
+    color:var(--cream);
+    letter-spacing:-0.01em;
+  }
+
+  h1 .accent{
+    color:var(--crema-soft);
+    font-style:italic;
+    font-weight:400;
+  }
+
+  .sub{
+    font-family:'JetBrains Mono','Courier New',monospace;
+    color:var(--cream-dim);
+    font-size:14px;
+    margin-top:18px;
+    letter-spacing:0.02em;
+  }
+
+  .sub span{ color:var(--mint); }
+
+  main{
+    max-width:920px;
+    margin: 0 auto;
+    padding: 10px 24px 80px;
+  }
+
+  .rule{
+    height:1px;
+    background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
+    margin: 0 0 40px;
+  }
+
+  .chapters{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:16px;
+  }
+
+  @media (max-width: 620px){
+    .chapters{ grid-template-columns: 1fr; }
+  }
+
+  .chapter{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding: 20px 20px;
+    background: linear-gradient(180deg, var(--roast-800), var(--roast-700));
+    border:1px solid var(--line);
+    border-radius:10px;
+    text-decoration:none;
+    color:inherit;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    overflow:hidden;
+  }
+
+  .chapter::before{
+    content:"";
+    position:absolute;
+    left:0; top:0; bottom:0;
+    width:3px;
+    background: var(--crema);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.25s ease;
+  }
+
+  .chapter:hover{
+    transform: translateY(-3px);
+    border-color: rgba(155,93,229,0.5);
+    background: linear-gradient(180deg, #281a38, #34204a);
+  }
+
+  .chapter:hover::before{ transform: scaleY(1); }
+
+  .tag{
+    font-family:'JetBrains Mono','Courier New',monospace;
+    font-size:13px;
+    color: var(--roast-900);
+    background: var(--crema-soft);
+    min-width:52px;
+    text-align:center;
+    padding:6px 0;
+    border-radius:6px;
+    font-weight:700;
+    flex-shrink:0;
+  }
+
+  .chapter-text{ display:flex; flex-direction:column; gap:3px; }
+
+  .chapter-title{
+    font-size:19px;
+    font-weight:700;
+    color:var(--cream);
+  }
+
+  .chapter-note{
+    font-family:'JetBrains Mono','Courier New',monospace;
+    font-size:12px;
+    color:var(--cream-dim);
+  }
+
+  .arrow{
+    margin-left:auto;
+    color:var(--mint);
+    font-family:'JetBrains Mono','Courier New',monospace;
+    opacity:0;
+    transform: translateX(-6px);
+    transition: all 0.18s ease;
+  }
+  .chapter:hover .arrow{ opacity:1; transform:translateX(0); }
+
+  .back-wrap{
+    display:flex;
+    justify-content:center;
+    margin-top:56px;
+  }
+
+  .back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono','Courier New',monospace;
+    font-size:14px;
+    color:var(--roast-900);
+    background: var(--crema-soft);
+    text-decoration:none;
+    padding:14px 26px;
+    border-radius:999px;
+    font-weight:700;
+    letter-spacing:0.02em;
+    border:1px solid transparent;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    box-shadow: 0 6px 20px rgba(155,93,229,0.25);
+  }
+
+  .back-btn:hover{
+    transform: translateY(-2px);
+    background: var(--cream);
+    box-shadow: 0 10px 26px rgba(155,93,229,0.35);
+  }
+
+  .back-btn:active{ transform: translateY(0); }
+
+  footer{
+    text-align:center;
+    padding: 0 24px 40px;
+    font-family:'JetBrains Mono','Courier New',monospace;
+    color: rgba(241,230,211,0.35);
+    font-size:12px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .steam path{ animation:none; opacity:0; }
+    .chapter, .back-btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+  <svg class="steam" viewBox="0 0 220 120" aria-hidden="true">
+    <path d="M90 110 C 70 90, 110 80, 90 60 C 70 40, 110 30, 95 5"></path>
+    <path d="M120 110 C 100 90, 140 80, 120 60 C 100 40, 140 30, 125 5"></path>
+    <path d="M150 110 C 130 90, 170 80, 150 60 C 130 40, 170 30, 155 5"></path>
+  </svg>
+  <p class="eyebrow">// public class LearnJava</p>
+  <h1>Welcome to <span class="accent">Learn Java</span></h1>
+  <p class="sub">10 chapters &nbsp;<span>·</span>&nbsp; brewed one concept at a time &nbsp;<span>·</span>&nbsp; <span>status: compiling knowledge...</span></p>
+</header>
+
+<main>
+  <div class="rule"></div>
+
+  <div class="chapters">
+    <a class="chapter" href="chapter1.html">
+      <span class="tag">01</span>
+      <span class="chapter-text">
+        <span class="chapter-title">Chapter 1</span>
+        <span class="chapter-note">getting started</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="chapter" href="#chapter2">
+      <span class="tag">02</span>
+      <span class="chapter-text">
+        <span class="chapter-title">Chapter 2</span>
+        <span class="chapter-note">variables &amp; types</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="chapter" href="#chapter3">
+      <span class="tag">03</span>
+      <span class="chapter-text">
+        <span class="chapter-title">Chapter 3</span>
+        <span class="chapter-note">operators</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="chapter" href="#chapter4">
+      <span class="tag">04</span>
+      <span class="chapter-text">
+        <span class="chapter-title">Chapter 4</span>
+        <span class="chapter-note">control flow</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="chapter" href="#chapter5">
+      <span class="tag">05</span>
+      <span class="chapter-text">
+        <span class="chapter-title">Chapter 5</span>
+        <span class="chapter-note">loops</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="chapter" href="#chapter6">
+      <span class="tag">06</span>
+      <span class="chapter-text">
+        <span class="chapter-title">Chapter 6</span>
+        <span class="chapter-note">arrays</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="chapter" href="#chapter7">
+      <span class="tag">07</span>
+      <span class="chapter-text">
+        <span class="chapter-title">Chapter 7</span>
+        <span class="chapter-note">methods</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="chapter" href="#chapter8">
+      <span class="tag">08</span>
+      <span class="chapter-text">
+        <span class="chapter-title">Chapter 8</span>
+        <span class="chapter-note">classes &amp; objects</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="chapter" href="#chapter9">
+      <span class="tag">09</span>
+      <span class="chapter-text">
+        <span class="chapter-title">Chapter 9</span>
+        <span class="chapter-note">inheritance</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="chapter" href="#chapter10">
+      <span class="tag">10</span>
+      <span class="chapter-text">
+        <span class="chapter-title">Chapter 10</span>
+        <span class="chapter-note">exceptions</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <div class="back-wrap">
+    <a class="back-btn" href="main.html">← Back to Main</a>
+  </div>
+</main>
+
+<footer>learnaboutit.html</footer>
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Interview Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #4C1D95 0%, #6D28D9 45%, #7C3AED 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .exam-card {
+    background: rgba(255,255,255,.97);
+    max-width: 560px;
+    width: 100%;
+    border-radius: 24px;
+    padding: 44px 40px 40px;
+    box-shadow: 0 25px 60px rgba(0,0,0,.3);
+    border: 1px solid rgba(255,255,255,.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .exam-card::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 6px;
+    background: linear-gradient(90deg, #7C3AED, #22D3EE);
+  }
+
+  .icon-badge {
+    width: 64px; height: 64px; border-radius: 18px;
+    background: linear-gradient(135deg, #5B21B6, #7C3AED);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px; margin: 0 auto 18px;
+    box-shadow: 0 10px 25px rgba(124,58,237,.35);
+  }
+
+  .exam-title {
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: #18103A;
+    margin-bottom: 6px;
+  }
+  .exam-tag {
+    text-align: center;
+    font-size: .85rem;
+    font-weight: 700;
+    color: #7C3AED;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .meta-row {
+    display: flex; justify-content: center; gap: 10px;
+    margin-bottom: 26px; flex-wrap: wrap;
+  }
+  .meta-chip {
+    background: #EDE9FE; color: #5B21B6; font-weight: 700; font-size: .8rem;
+    padding: 7px 14px; border-radius: 50px; display: flex; align-items: center; gap: 6px;
+  }
+
+  .instructions-box {
+    background: #F9FAFB;
+    border: 1.5px solid #E5E7EB;
+    border-left: 4px solid #7C3AED;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 28px;
+  }
+  .instructions-box h3 {
+    font-size: .85rem; font-weight: 800; color: #5B21B6;
+    text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px;
+  }
+  .instructions-box ul { list-style: none; counter-reset: step; }
+  .instructions-box li {
+    font-size: .9rem; color: #374151; margin-bottom: 12px;
+    padding-left: 32px; position: relative; line-height: 1.5;
+    counter-increment: step;
+  }
+  .instructions-box li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: -1px;
+    width: 20px; height: 20px; border-radius: 6px;
+    background: linear-gradient(135deg, #7C3AED, #A78BFA);
+    color: #fff; font-size: .72rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .instructions-box li:last-child { margin-bottom: 0; }
+
+  .name-field { margin-bottom: 24px; }
+  .name-field label {
+    display: block; font-size: .82rem; font-weight: 700; color: #374151; margin-bottom: 8px;
+  }
+  .name-field input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1.5px solid #D1D5DB;
+    font-family: inherit;
+    font-size: .95rem;
+    font-weight: 600;
+    color: #18103A;
+    transition: all .2s ease;
+  }
+  .name-field input:focus {
+    outline: none;
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 4px rgba(124,58,237,.12);
+  }
+
+  .start-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #059669, #10B981);
+    color: white;
+    border: none;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 800;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(5,150,105,.35);
+    transition: all .2s ease;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .start-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(5,150,105,.45); }
+  .start-btn:active { transform: translateY(0); }
+
+  .footer-note {
+    text-align: center; font-size: .75rem; color: #9CA3AF; margin-top: 18px; font-weight: 600;
+  }
+
+  @media (max-width: 480px) {
+    .exam-card { padding: 34px 24px 30px; }
+    .exam-title { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+  <div class="exam-card">
+    <div class="icon-badge">☕</div>
+    <h1 class="exam-title">Java Interview Practice</h1>
+    <p class="exam-tag">Round 1 · Core Java</p>
+
+    <div class="meta-row">
+      <span class="meta-chip">📝 10 Questions</span>
+      <span class="meta-chip">🎯 Faculty Reviewed</span>
+      <span class="meta-chip">📊 Instant Score</span>
+    </div>
+
+    <div class="instructions-box">
+      <h3>Instructions</h3>
+      <ul>
+        <li>You'll be presented with 10 Java interview questions, one at a time.</li>
+        <li>Answer each question in your own words — be clear and concise.</li>
+        <li>Try to attempt every question before submitting.</li>
+        <li>Once submitted, faculty will review and grade your answers.</li>
+        <li>After review, your score will be available on the result page.</li>
+      </ul>
+    </div>
+
+    <div class="name-field">
+      <label for="studentName">Enter your full name</label>
+      <input type="text" id="studentName" placeholder="e.g. Loknath Prasad Das">
+    </div>
+
+    <button class="start-btn" onclick="startTest()">🚀 Start Test</button>
+    <p class="footer-note">Once started, please attempt the test seriously</p>
+  </div>
+
+<script>
+function startTest() {
+  const input = document.getElementById('studentName');
+  const name = input.value.trim();
+  if (!name) {
+    input.style.borderColor = '#EF4444';
+    input.style.boxShadow = '0 0 0 4px rgba(239,68,68,.12)';
+    input.focus();
+    return;
+  }
+  localStorage.setItem('studentName', name);
+  window.location.href = 'java.html';
+}
+
+document.getElementById('studentName').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') startTest();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Questions | Faculty Portal MIT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --p1: #5B21B6; --p2: #7C3AED; --p3: #8B5CF6; --p-pale: #EDE9FE;
+      --c1: #0891B2; --c2: #06B6D4; --c3: #22D3EE;
+      --pink: #DB2777; --amber: #D97706; --green: #059669; --red: #EF4444;
+      --bg-gradient: linear-gradient(135deg, #4C1D95 0%, #6D28D9 45%, #7C3AED 100%);
+      --surface: #FFFFFF;
+      --ink: #18103A; --muted: #5B6278; --subtle: #9CA3AF;
+      --r8: 8px; --r12: 12px; --r16: 16px; --r20: 20px; --r24: 24px; --r32: 32px;
+      --s1: 0 2px 8px rgba(0,0,0,.08);
+      --s2: 0 8px 24px rgba(0,0,0,.14);
+      --s3: 0 20px 60px rgba(0,0,0,.25);
+      --ease: cubic-bezier(.4, 0, .2, 1);
+      --fast: .22s var(--ease); --mid: .38s var(--ease);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 300;
+      background: linear-gradient(90deg, #3B0F8C 0%, #6D28D9 50%, #7C3AED 100%);
+      height: 64px; display: flex; align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,.25);
+      padding: 0 4%;
+    }
+    .nav-inner {
+      width: 100%; max-width: 1300px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-left { display: flex; align-items: center; gap: 1.2rem; }
+    .nav-logo { font-size: 1.35rem; font-weight: 900; color: #fff; letter-spacing: 1.5px; display: flex; align-items: center; gap: .6rem; }
+    .badge-faculty {
+      background: rgba(34, 211, 238, 0.2); border: 1px solid #22D3EE; color: #22D3EE;
+      font-size: .68rem; font-weight: 800; padding: 2px 8px; border-radius: 50px; text-transform: uppercase;
+    }
+    .nav-links-left { display: flex; align-items: center; gap: 1.8rem; margin-left: 1.5rem; }
+    .nav-links-left a { color: rgba(255,255,255,.85); font-size: .92rem; font-weight: 600; }
+    .nav-links-left a:hover, .nav-links-left a.active { color: #FFFFFF; }
+    .nav-right a { color: rgba(255,255,255,.85); font-size: .92rem; font-weight: 600; }
+
+    /* Main */
+    .main-wrapper {
+      flex: 1; padding: 2.5rem 4% 5rem; max-width: 1240px; margin: 0 auto; width: 100%;
+    }
+    .portal-card {
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: var(--r32);
+      padding: 3rem 2.8rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,.3);
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .5rem; color: #EDE9FE;
+      font-weight: 700; font-size: .9rem; margin-bottom: 1.5rem;
+      background: rgba(255,255,255,.1); padding: .4rem 1rem; border-radius: 50px;
+    }
+    .back-link:hover { background: rgba(255,255,255,.2); color: #fff; }
+
+    .header-box { text-align: center; margin-bottom: 2.5rem; }
+    .header-title { font-size: clamp(2rem, 3.5vw, 2.7rem); font-weight: 900; color: #FFFFFF; margin-bottom: .5rem; }
+    .header-desc { font-size: 1.05rem; color: #EDE9FE; font-weight: 500; }
+
+    /* 9 Domain Grid */
+    .domain-selector-title {
+      font-size: 1.3rem; font-weight: 900; color: #fff; margin-bottom: 1.2rem; display: flex; align-items: center; gap: .5rem;
+    }
+    .domain-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2.8rem;
+    }
+    .domain-box {
+      background: #DDD6FE; border-radius: var(--r20); padding: 1.4rem 1.2rem;
+      border: 2px solid rgba(255,255,255,.5); cursor: pointer; transition: all var(--fast);
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .domain-box:hover, .domain-box.selected {
+      background: #FFFFFF; border-color: #7C3AED; transform: translateY(-4px); box-shadow: var(--s2);
+    }
+    .domain-box.selected {
+      border: 3px solid #7C3AED; background: #EDE9FE;
+    }
+    .domain-icon { font-size: 2rem; }
+    .domain-name { font-size: 1.1rem; font-weight: 900; color: #1E1B4B; }
+    .domain-sub { font-size: .78rem; color: #5B6278; font-weight: 600; }
+
+    /* Form Container */
+    .form-container {
+      background: #FFFFFF; border-radius: var(--r24); padding: 2.5rem; box-shadow: var(--s3);
+    }
+    .form-title { font-size: 1.4rem; font-weight: 900; color: var(--ink); margin-bottom: 1.5rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { font-size: .88rem; font-weight: 800; color: #374151; }
+    input, select, textarea {
+      width: 100%; padding: .8rem 1rem; border-radius: var(--r12);
+      border: 1.5px solid #D1D5DB; font-family: inherit; font-size: .92rem;
+      outline: none; transition: border-color var(--fast);
+    }
+    input:focus, select:focus, textarea:focus { border-color: #7C3AED; box-shadow: 0 0 0 3px rgba(124,58,237,.15); }
+    textarea { resize: vertical; min-height: 100px; }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #6D28D9, #7C3AED); color: #fff;
+      padding: .9rem 2.2rem; border-radius: var(--r12); border: none;
+      font-size: 1rem; font-weight: 900; cursor: pointer; transition: all var(--fast);
+      box-shadow: 0 6px 18px rgba(109,40,217,.35); display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-submit:hover { transform: translateY(-2px); background: linear-gradient(135deg, #5B21B6, #6D28D9); }
+
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem; background: #059669; color: #fff;
+      padding: 1rem 1.8rem; border-radius: var(--r12); font-weight: 800;
+      box-shadow: var(--s3); display: none; z-index: 1000; animation: slideUp .3s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    @media (max-width: 900px) {
+      .domain-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .domain-grid { grid-template-columns: 1fr; }
+      .portal-card { padding: 2rem 1.2rem; }
+      .form-container { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a href="faculty.html" class="nav-logo">
+          <div style="width:8px;height:8px;border-radius:50%;background:#22D3EE;"></div>
+          INTERFINIX <span class="badge-faculty">Faculty</span>
+        </a>
+        <div class="nav-links-left">
+          <a href="faculty.html">Faculty Home</a>
+          <a href="addQs.html" class="active">Add Questions</a>
+          <a href="ansQs.html">Answer Questions</a>
+          <a href="ansquery.html">Student Queries</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <a href="faculty.html">&larr; Back to Hub</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-wrapper">
+    <div class="portal-card">
+      <a href="faculty.html" class="back-link">&larr; Back to Faculty Dashboard</a>
+
+      <div class="header-box">
+        <h1 class="header-title">Select your field to Add Qs</h1>
+        <p class="header-desc">Choose one of the 9 domains below to add custom interview questions, MCQs, and assessment tasks.</p>
+      </div>
+
+      <!-- 9 Domain Grid -->
+      <h2 class="domain-selector-title"><span>📂</span> 1. Select Target Domain:</h2>
+      <div class="domain-grid" id="domainGrid">
+        <div class="domain-box" data-domain="frontend" onclick="selectDomain('frontend', 'Frontend Developer')">
+          <div class="domain-icon">🎨</div>
+          <div><div class="domain-name">Frontend Developer</div><div class="domain-sub">React, UI/UX, TypeScript</div></div>
+        </div>
+        <div class="domain-box" data-domain="backend" onclick="selectDomain('backend', 'Backend Developer')">
+          <div class="domain-icon">⚙️</div>
+          <div><div class="domain-name">Backend Developer</div><div class="domain-sub">Node.js, Express, DBs, APIs</div></div>
+        </div>
+        <div class="domain-box" data-domain="fullstack" onclick="selectDomain('fullstack', 'Full Stack Developer')">
+          <div class="domain-icon">🚀</div>
+          <div><div class="domain-name">Full Stack Developer</div><div class="domain-sub">MERN, Architecture, DevOps</div></div>
+        </div>
+        <div class="domain-box" data-domain="java" onclick="selectDomain('java', 'Java Developer')">
+          <div class="domain-icon">☕</div>
+          <div><div class="domain-name">Java Developer</div><div class="domain-sub">Core Java, Spring Boot, OOP</div></div>
+        </div>
+        <div class="domain-box" data-domain="cloud" onclick="selectDomain('cloud', 'Cloud Computing')">
+          <div class="domain-icon">☁️</div>
+          <div><div class="domain-name">Cloud Computing</div><div class="domain-sub">AWS, Docker, Kubernetes</div></div>
+        </div>
+        <div class="domain-box" data-domain="cyber" onclick="selectDomain('cyber', 'Cyber Security')">
+          <div class="domain-icon">🛡️</div>
+          <div><div class="domain-name">Cyber Security</div><div class="domain-sub">Pen-testing, OWASP, SOC</div></div>
+        </div>
+        <div class="domain-box" data-domain="ml" onclick="selectDomain('ml', 'Machine Learning')">
+          <div class="domain-icon">🤖</div>
+          <div><div class="domain-name">Machine Learning</div><div class="domain-sub">Python, AI, Deep Learning</div></div>
+        </div>
+        <div class="domain-box" data-domain="web" onclick="selectDomain('web', 'Web Developer')">
+          <div class="domain-icon">🌐</div>
+          <div><div class="domain-name">Web Developer</div><div class="domain-sub">HTML, CSS, JS Fundamentals</div></div>
+        </div>
+        <div class="domain-box" data-domain="dsa" onclick="selectDomain('dsa', 'DSA')">
+          <div class="domain-icon">🧠</div>
+          <div><div class="domain-name">DSA</div><div class="domain-sub">Trees, Graphs, DP, Algorithms</div></div>
+        </div>
+      </div>
+
+      <!-- Add Question Form -->
+      <div class="form-container">
+        <h2 class="form-title" id="formHeader">2. Add New Question for <span style="color:#7C3AED;" id="selectedDomainLabel">Frontend Developer</span></h2>
+        
+        <form id="addQuestionForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="qTopic">Sub-Topic / Category</label>
+              <input type="text" id="qTopic" placeholder="e.g. React Virtual DOM, Closures, Redux" required />
+            </div>
+            <div class="form-group">
+              <label for="qDifficulty">Difficulty Level</label>
+              <select id="qDifficulty">
+                <option value="Junior">Junior / Entry-Level (0-2 yrs)</option>
+                <option value="Mid-Level">Mid-Level (2-5 yrs)</option>
+                <option value="Senior">Senior / Architect (5+ yrs)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="qType">Question Type</label>
+              <select id="qType" onchange="toggleOptionFields()">
+                <option value="Technical">Conceptual / Technical Interview Q&A</option>
+                <option value="MCQ">Multiple Choice Question (MCQ)</option>
+                <option value="Coding">Coding / Practical Challenge</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="qMarks">Target Time (Minutes)</label>
+              <input type="number" id="qMarks" value="5" min="1" max="60" />
+            </div>
+
+            <div class="form-group full">
+              <label for="qQuestion">Question Text</label>
+              <textarea id="qQuestion" placeholder="Enter the complete question here..." required></textarea>
+            </div>
+
+            <div class="form-group full" id="mcqOptionsWrap" style="display:none;">
+              <label>MCQ Options (Comma separated or 4 lines)</label>
+              <input type="text" id="mcqOptA" placeholder="Option A" style="margin-bottom:.4rem;" />
+              <input type="text" id="mcqOptB" placeholder="Option B" style="margin-bottom:.4rem;" />
+              <input type="text" id="mcqOptC" placeholder="Option C" style="margin-bottom:.4rem;" />
+              <input type="text" id="mcqOptD" placeholder="Option D" />
+            </div>
+
+            <div class="form-group full">
+              <label for="qModelAnswer">Model Answer / Evaluation Rubric & Key Points</label>
+              <textarea id="qModelAnswer" placeholder="Provide ideal model answer or key concepts students must mention..." required></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            <span>💾</span> Save Question to Domain Bank
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="toast" id="toast">✅ Question successfully added to domain!</div>
+
+  <script>
+    let activeDomainKey = 'frontend';
+
+    function selectDomain(key, name) {
+      activeDomainKey = key;
+      document.querySelectorAll('.domain-box').forEach(b => b.classList.remove('selected'));
+      const targetBox = document.querySelector(`.domain-box[data-domain="${key}"]`);
+      if (targetBox) targetBox.classList.add('selected');
+      document.getElementById('selectedDomainLabel').textContent = name;
+    }
+
+    function toggleOptionFields() {
+      const type = document.getElementById('qType').value;
+      const wrap = document.getElementById('mcqOptionsWrap');
+      wrap.style.display = type === 'MCQ' ? 'block' : 'none';
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const topic = document.getElementById('qTopic').value;
+      const difficulty = document.getElementById('qDifficulty').value;
+      const type = document.getElementById('qType').value;
+      const time = document.getElementById('qMarks').value;
+      const question = document.getElementById('qQuestion').value;
+      const modelAnswer = document.getElementById('qModelAnswer').value;
+
+      const newQ = {
+        id: Date.now(),
+        domain: activeDomainKey,
+        topic,
+        difficulty,
+        type,
+        time,
+        question,
+        modelAnswer,
+        createdAt: new Date().toISOString()
+      };
+
+      const existing = JSON.parse(localStorage.getItem('faculty_custom_questions') || '[]');
+      existing.push(newQ);
+      localStorage.setItem('faculty_custom_questions', JSON.stringify(existing));
+
+      // Reset & show toast
+      document.getElementById('addQuestionForm').reset();
+      const toast = document.getElementById('toast');
+      toast.style.display = 'block';
+      setTimeout(() => toast.style.display = 'none', 3000);
+    }
+
+    // Read URL param if launched directly with ?domain=java
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const domParam = params.get('domain') || 'frontend';
+      const box = document.querySelector(`.domain-box[data-domain="${domParam}"]`);
+      if (box) {
+        const title = box.querySelector('.domain-name').textContent;
+        selectDomain(domParam, title);
+      } else {
+        selectDomain('frontend', 'Frontend Developer');
+      }
+    });
+  </script>
+</body>
+</html>

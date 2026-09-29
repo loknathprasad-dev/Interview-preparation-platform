@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Management System</title>
+    <link rel = "stylesheet" href = "style.css">
+</head>
+<body>
+    <h1>Question Management System</h1>
+    <button id = "resetButton">Reset</button>
+    <form id = "questionForm">
+    <label for ="domain">Select Domain</label>
+    <select id = "domain" name = "domain">
+        <option value = "">Select domain</option>
+        <option value = "1">DSA with Java</option>
+        <option value = "2">DBMS</option>
+        <option value = "3">OOPS with Java</option>
+        <option value = "4">OOSD with C++</option>
+        <option value = "5">Operating System</option>
+        <option value = "6">Web Technologies</option>
+        <option value = "7">Machine learning</option>
+        <option value = "8">COA</option>
+        <option value = "9">TOC</option>
+    </select>
+    <br><br>
+    <label for = "difficulty">Select Difficulty</label>
+    <select id = "difficulty" name = "difficulty">
+        <option value = "">Select difficulty</option>
+        <option value = "1">Easy</option>
+        <option value = "2">Medium</option>
+        <option value = "3">Hard</option>
+    </select>
+    <br><br>
+    <label for = "question">Enter Question</label><br>
+    <textarea id = "question" name = "question" autocomplete = "off" rows = "5" cols = "50" placeholder = "Enter your Question here..."></textarea>
+    <br><br>
+    <label for = "question type">Question Type</label>
+    <select id = "question_type" name = "question type">
+        <option value = "">Select question type</option>
+        <option value = "1">MCQ</option>
+        <option value = "2">Subjective</option>
+    </select>
+    <br><br>
+    <button type = "submit" id = "addQuestionButton">Add Question</button>
+    <br><br>
+    <button type ="button" id = "updateButton">Update Question</button>
+    </form>
+    <h2>Questions</h2>
+    <table border = "1" id = "questionTable">
+        <tr>
+            <th>Question</th>
+            <th>Domain</th>
+            <th>Difficulty</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    </table>
+    <script src = "script.js"></script>
+</body>
+</html>

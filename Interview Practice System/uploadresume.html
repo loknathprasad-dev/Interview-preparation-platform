@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interfinix Resume Scanner – Upload your CV for ATS compatibility scoring, keyword matching, and personalized interview questions." />
+  <title>Upload Resume & ATS Scanner – Interfinix</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS & BASE
+    ============================================================ */
+    :root {
+      --p1: #5B21B6; --p2: #7C3AED; --p3: #8B5CF6;
+      --c1: #0891B2; --c2: #06B6D4; --c3: #22D3EE;
+      --pink: #DB2777; --amber: #D97706; --green: #059669; --red: #EF4444;
+      --bg: #F4F1FD; --surface: #FFFFFF;
+      --ink: #18103A; --muted: #5B6278; --subtle: #9CA3AF;
+      --r8: 8px; --r12: 12px; --r16: 16px; --r20: 20px; --r24: 24px; --r32: 32px;
+      --s1: 0 2px 8px rgba(91,33,182,.07);
+      --s2: 0 8px 24px rgba(91,33,182,.12);
+      --s3: 0 20px 60px rgba(91,33,182,.2);
+      --ease: cubic-bezier(.4, 0, .2, 1);
+      --fast: .22s var(--ease); --mid: .38s var(--ease); --slow: .6s var(--ease);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ============================================================
+       NAVBAR & HAMBURGER
+    ============================================================ */
+    nav {
+      position: sticky; top: 0; z-index: 300;
+      background: linear-gradient(90deg, #3B0F8C 0%, #6D28D9 50%, #7C3AED 100%);
+      height: 64px; display: flex; align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,.25);
+      padding: 0 4%;
+    }
+    .nav-inner {
+      width: 100%; max-width: 1300px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-left { display: flex; align-items: center; gap: 1.2rem; }
+    .btn-hamburger {
+      width: 42px; height: 42px; border-radius: var(--r12);
+      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.2);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      cursor: pointer; transition: all var(--fast);
+    }
+    .btn-hamburger:hover { background: rgba(255,255,255,.25); }
+    .btn-hamburger span { display: block; width: 20px; height: 2px; background: #FFFFFF; border-radius: 2px; }
+    .nav-logo { font-size: 1.4rem; font-weight: 900; color: #fff; letter-spacing: 2px; display: flex; align-items: center; gap: .5rem; }
+    .nav-links-left { display: flex; align-items: center; gap: 1.8rem; margin-left: 1.5rem; }
+    .nav-links-left a { color: rgba(255,255,255,.85); font-size: .92rem; font-weight: 600; transition: color var(--fast); }
+    .nav-links-left a:hover { color: #FFFFFF; }
+    .nav-right { display: flex; align-items: center; gap: 1.4rem; }
+    .user-pill {
+      display: flex; align-items: center; gap: .6rem;
+      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.2);
+      padding: .35rem .9rem .35rem .45rem; border-radius: 50px; cursor: pointer;
+    }
+    .user-avatar {
+      width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--c2), var(--c1));
+      display: flex; align-items: center; justify-content: center; font-size: .85rem; font-weight: 800; color: #fff;
+    }
+    .user-name { font-size: .84rem; font-weight: 700; color: #fff; }
+
+    /* Hamburger Drawer */
+    .drawer-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+      z-index: 500; opacity: 0; pointer-events: none; transition: opacity var(--mid);
+    }
+    .drawer-backdrop.open { opacity: 1; pointer-events: auto; }
+    .drawer {
+      position: fixed; top: 0; left: 0; bottom: 0; width: 310px;
+      background: #1E1035; color: #fff; z-index: 510;
+      box-shadow: 10px 0 40px rgba(0,0,0,.5);
+      transform: translateX(-100%); transition: transform var(--mid);
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 2rem 1.6rem;
+    }
+    .drawer.open { transform: translateX(0); }
+    .drawer-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .drawer-brand { font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; color: #fff; }
+    .btn-close-drawer { background: none; border: none; font-size: 1.4rem; color: rgba(255,255,255,.7); cursor: pointer; }
+    .drawer-menu { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-top: 1.5rem; }
+    .drawer-menu a {
+      display: flex; align-items: center; gap: 1rem; padding: .85rem 1.1rem; border-radius: var(--r12);
+      font-size: .94rem; font-weight: 700; color: rgba(255,255,255,.8); transition: all var(--fast);
+    }
+    .drawer-menu a:hover, .drawer-menu a.active { background: rgba(124, 58, 237, 0.35); color: #fff; transform: translateX(6px); }
+    .drawer-menu a.logout-link { color: #F87171; margin-top: 1rem; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.2rem; }
+
+    /* ============================================================
+       PAGE HERO BANNER
+    ============================================================ */
+    .hero-banner {
+      background: linear-gradient(135deg, #1E0456 0%, #3D1A8C 35%, #5B21B6 70%, #0891B2 100%);
+      padding: 3.5rem 5% 2rem; color: #fff; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero-banner h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: .6rem; }
+    .hero-banner h1 span {
+      background: linear-gradient(135deg, #22D3EE, #C4B5FD);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-banner p { font-size: 1rem; color: rgba(255,255,255,.8); max-width: 620px; margin: 0 auto; line-height: 1.7; }
+
+    /* ============================================================
+       MAIN CONTENT CONTAINER
+    ============================================================ */
+    .content-wrapper {
+      max-width: 1160px; margin: -30px auto 4rem; padding: 0 4%; width: 100%; position: relative; z-index: 10;
+    }
+
+    /* Top Grid: Upload Card + Target Role */
+    .upload-grid {
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem;
+    }
+
+    .card {
+      background: var(--surface); border-radius: var(--r24);
+      padding: 2.5rem 2.2rem; box-shadow: var(--s2);
+      border: 1px solid rgba(91,33,182,.1);
+    }
+    .card-heading {
+      font-size: 1.25rem; font-weight: 800; color: var(--ink); margin-bottom: .4rem; display: flex; align-items: center; gap: .6rem;
+    }
+    .card-sub { font-size: .88rem; color: var(--muted); margin-bottom: 1.6rem; }
+
+    /* Drag and Drop Zone */
+    .drop-zone {
+      border: 2.5px dashed var(--p2); border-radius: var(--r20);
+      background: #F5F3FF; padding: 2.8rem 1.8rem; text-align: center;
+      cursor: pointer; transition: all var(--mid); position: relative;
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+      background: #EDE9FE; border-color: var(--p1); transform: scale(1.01);
+    }
+    .drop-icon { font-size: 3.5rem; margin-bottom: .8rem; }
+    .drop-title { font-size: 1.05rem; font-weight: 800; color: var(--ink); margin-bottom: .3rem; }
+    .drop-info { font-size: .82rem; color: var(--muted); }
+    .drop-file-input {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer;
+    }
+
+    /* Selected File Pill */
+    .file-preview {
+      display: none; margin-top: 1.4rem; background: #FFFFFF;
+      border: 1.5px solid #DDD6FE; border-radius: var(--r16);
+      padding: 1rem 1.2rem; align-items: center; justify-content: space-between; gap: 1rem;
+      box-shadow: var(--s1);
+    }
+    .file-preview.show { display: flex; }
+    .file-info { display: flex; align-items: center; gap: .8rem; }
+    .file-icon { font-size: 1.8rem; color: #EF4444; }
+    .file-name { font-size: .9rem; font-weight: 800; color: var(--ink); }
+    .file-size { font-size: .76rem; color: var(--subtle); }
+    .btn-remove-file { background: none; border: none; font-size: 1.2rem; color: var(--subtle); cursor: pointer; }
+    .btn-remove-file:hover { color: var(--red); }
+
+    /* Right Settings Card */
+    .form-group { margin-bottom: 1.4rem; }
+    .form-label { display: block; font-size: .84rem; font-weight: 700; color: var(--ink); margin-bottom: .5rem; }
+    .form-select {
+      width: 100%; padding: .85rem 1rem; border-radius: var(--r12);
+      border: 1.5px solid #E2E8F0; background: #F8FAFC; font-family: inherit; font-size: .92rem; font-weight: 600;
+      color: var(--ink); outline: none; transition: border-color var(--fast);
+    }
+    .form-select:focus { border-color: var(--p2); background: #FFFFFF; }
+
+    .role-perks {
+      background: #F8FAFC; border-radius: var(--r16); padding: 1.2rem; border: 1px solid #E2E8F0;
+      margin-bottom: 1.6rem; font-size: .84rem; color: var(--muted); line-height: 1.7;
+    }
+    .role-perks ul { padding-left: 1.2rem; margin-top: .4rem; }
+
+    .btn-scan {
+      width: 100%; padding: 1rem; border-radius: var(--r12); border: none;
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      color: #fff; font-family: inherit; font-size: .98rem; font-weight: 800;
+      cursor: pointer; box-shadow: 0 6px 20px rgba(91,33,182,.35);
+      display: flex; align-items: center; justify-content: center; gap: .6rem;
+      transition: transform var(--fast), box-shadow var(--fast);
+    }
+    .btn-scan:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(91,33,182,.45); }
+    .btn-scan:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    /* ============================================================
+       SCANNING ANIMATION PROGRESS BAR
+    ============================================================ */
+    .scanning-panel {
+      display: none; background: var(--surface); border-radius: var(--r24);
+      padding: 3rem; margin-top: 2rem; box-shadow: var(--s2); text-align: center;
+    }
+    .scanning-panel.active { display: block; }
+    .scan-spinner {
+      width: 60px; height: 60px; border-radius: 50%;
+      border: 4px solid #EDE9FE; border-top-color: var(--p2);
+      margin: 0 auto 1.5rem; animation: spin 1s linear infinite;
+    }
+    .scan-status-text { font-size: 1.15rem; font-weight: 800; color: var(--ink); margin-bottom: .4rem; }
+    .scan-status-sub { font-size: .88rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .progress-track {
+      height: 8px; border-radius: 4px; background: #E2E8F0; max-width: 500px; margin: 0 auto; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; width: 0%; background: linear-gradient(90deg, var(--p2), var(--c2)); transition: width .3s ease;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ============================================================
+       ATS RESULTS DASHBOARD (Generated dynamically)
+    ============================================================ */
+    .results-panel {
+      display: none; margin-top: 2.5rem;
+    }
+    .results-panel.show { display: block; animation: fadeInUp .5s ease both; }
+
+    .results-header {
+      background: linear-gradient(135deg, #2D0A6A, #5B21B6);
+      border-radius: var(--r24); padding: 2.5rem; color: #fff;
+      display: grid; grid-template-columns: 1fr 2fr; gap: 2.5rem; align-items: center;
+      margin-bottom: 2rem; box-shadow: var(--s3);
+    }
+    .score-circle-wrap { text-align: center; }
+    .score-circle {
+      width: 140px; height: 140px; border-radius: 50%;
+      background: conic-gradient(var(--green) 0deg, var(--c2) 300deg, rgba(255,255,255,.2) 300deg);
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
+      position: relative;
+    }
+    .score-circle-inner {
+      width: 116px; height: 116px; border-radius: 50%; background: #2D0A6A;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .score-number { font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1; }
+    .score-label { font-size: .72rem; font-weight: 700; color: #A78BFA; text-transform: uppercase; }
+
+    .score-details h2 { font-size: 1.6rem; font-weight: 900; margin-bottom: .4rem; }
+    .score-details p { font-size: .92rem; color: rgba(255,255,255,.8); line-height: 1.6; margin-bottom: 1.2rem; }
+    .score-badges { display: flex; gap: .8rem; flex-wrap: wrap; }
+    .badge-pill {
+      padding: .4rem .9rem; border-radius: 50px; font-size: .78rem; font-weight: 800;
+      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25);
+    }
+
+    /* Section breakdown cards */
+    .breakdown-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; margin-bottom: 2rem;
+    }
+    .keywords-card {
+      background: var(--surface); border-radius: var(--r20); padding: 2rem; box-shadow: var(--s1);
+    }
+    .keywords-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--ink); margin-bottom: .5rem; }
+    .keywords-card p { font-size: .84rem; color: var(--muted); margin-bottom: 1.2rem; }
+    .keyword-group { margin-bottom: 1rem; }
+    .kw-title { font-size: .78rem; font-weight: 800; text-transform: uppercase; color: var(--subtle); margin-bottom: .5rem; }
+    .pill-list { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .pill-found {
+      background: #D1FAE5; color: #065F46; padding: .3rem .8rem; border-radius: 50px;
+      font-size: .78rem; font-weight: 700; border: 1px solid #A7F3D0;
+    }
+    .pill-missing {
+      background: #FEE2E2; color: #991B1B; padding: .3rem .8rem; border-radius: 50px;
+      font-size: .78rem; font-weight: 700; border: 1px solid #FECACA;
+    }
+
+    /* Custom Generated Interview Questions */
+    .questions-box {
+      background: var(--surface); border-radius: var(--r24); padding: 2.5rem; box-shadow: var(--s2);
+    }
+    .qb-header {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .qb-title h3 { font-size: 1.3rem; font-weight: 900; color: var(--ink); margin-bottom: .2rem; }
+    .qb-title p { font-size: .88rem; color: var(--muted); }
+    .btn-launch-test {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: linear-gradient(135deg, var(--p1), var(--p2)); color: #fff;
+      padding: .75rem 1.6rem; border-radius: 50px; font-weight: 800; font-size: .9rem;
+      box-shadow: 0 4px 16px rgba(91,33,182,.3); transition: transform var(--fast);
+    }
+    .btn-launch-test:hover { transform: translateY(-2px); }
+
+    .q-item {
+      background: #F8FAFC; border-radius: var(--r16); padding: 1.2rem 1.4rem; margin-bottom: 1rem;
+      border-left: 4px solid var(--p2);
+    }
+    .q-num { font-size: .75rem; font-weight: 800; color: var(--p2); text-transform: uppercase; margin-bottom: .3rem; }
+    .q-text { font-size: .95rem; font-weight: 700; color: var(--ink); line-height: 1.5; }
+    .q-tag { display: inline-block; font-size: .72rem; font-weight: 700; color: var(--c1); margin-top: .4rem; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .upload-grid { grid-template-columns: 1fr; }
+      .results-header { grid-template-columns: 1fr; text-align: center; }
+      .breakdown-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== TOP NAVIGATION BAR ==================== -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <button class="btn-hamburger" onclick="toggleDrawer()" aria-label="Open Sidebar">
+          <span></span><span></span><span></span>
+        </button>
+        <a href="main.html" class="nav-logo">
+          <div style="width:8px;height:8px;border-radius:50%;background:#22D3EE;"></div>
+          INTERFINIX
+        </a>
+        <div class="nav-links-left">
+          <a href="main.html">Home</a>
+          <a href="dashboard.html">Reports</a>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <div class="user-pill" onclick="window.location.href='myprofile.html'">
+          <div class="user-avatar" id="navAvatar">U</div>
+          <span class="user-name" id="navUserName">Student</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HAMBURGER DRAWER ==================== -->
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleDrawer()"></div>
+  <aside class="drawer" id="drawer">
+    <div>
+      <div class="drawer-header">
+        <div class="drawer-brand">INTERFINIX MENU</div>
+        <button class="btn-close-drawer" onclick="toggleDrawer()">✕</button>
+      </div>
+
+      <ul class="drawer-menu">
+        <li><a href="uploadresume.html" class="active"><span>📄</span> Upload Resume</a></li>
+        <li><a href="invite.html"><span>👥</span> Invite Friends</a></li>
+        <li><a href="myprofile.html"><span>👤</span> My Profile</a></li>
+        <li><a href="feedback.html"><span>⭐</span> Feedback</a></li>
+        <li><a href="querysupport.html"><span>💬</span> Query Support</a></li>
+        <li><a href="dashboard.html"><span>📊</span> Analytics Reports</a></li>
+        <li><a href="logout.html" class="logout-link"><span>🚪</span> Logout</a></li>
+      </ul>
+    </div>
+    <div style="font-size:.75rem;color:rgba(255,255,255,.4);text-align:center;">
+      Major Project 2028 &copy; Interfinix
+    </div>
+  </aside>
+
+  <!-- ==================== HERO BANNER ==================== -->
+  <section class="hero-banner">
+    <h1>Resume <span>ATS Scanner</span> &amp; Question Builder</h1>
+    <p>Upload your resume to check your ATS compatibility score, spot missing technical keywords, and generate custom interview questions for your dream role.</p>
+  </section>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="content-wrapper">
+    <div class="upload-grid">
+      
+      <!-- LEFT: Upload Drag & Drop -->
+      <div class="card">
+        <h2 class="card-heading"><span>📤</span> Upload Your Resume</h2>
+        <p class="card-sub">Supports PDF and DOCX files up to 5MB.</p>
+
+        <div class="drop-zone" id="dropZone">
+          <div class="drop-icon">📄</div>
+          <div class="drop-title">Drag &amp; drop your resume here</div>
+          <div class="drop-info">or click to browse files from your device</div>
+          <input type="file" id="resumeFileInput" class="drop-file-input" accept=".pdf,.docx,.doc" onchange="handleFileSelect(event)" />
+        </div>
+
+        <!-- Selected file indicator -->
+        <div class="file-preview" id="filePreview">
+          <div class="file-info">
+            <div class="file-icon">📑</div>
+            <div>
+              <div class="file-name" id="fileNameDisplay">My_Resume.pdf</div>
+              <div class="file-size" id="fileSizeDisplay">1.2 MB • Ready for scanning</div>
+            </div>
+          </div>
+          <button type="button" class="btn-remove-file" onclick="removeFile()" title="Remove file">✕</button>
+        </div>
+      </div>
+
+      <!-- RIGHT: Target Domain Settings -->
+      <div class="card">
+        <h2 class="card-heading"><span>🎯</span> Target Role &amp; Scan</h2>
+        <p class="card-sub">Select the job domain you are applying for.</p>
+
+        <div class="form-group">
+          <label class="form-label" for="targetFieldSelect">Select Target Domain</label>
+          <select id="targetFieldSelect" class="form-select">
+            <option value="web">Web Development</option>
+            <option value="software">Software Development</option>
+            <option value="app">App Development</option>
+            <option value="datascience">Data Science</option>
+            <option value="ml">AI &amp; Machine Learning</option>
+            <option value="cloud">Cloud Computing</option>
+            <option value="cyber">Cyber Security</option>
+            <option value="game">Game Development</option>
+            <option value="dsa">DSA &amp; Problem Solving</option>
+          </select>
+        </div>
+
+        <div class="role-perks">
+          <strong>What our scanner evaluates:</strong>
+          <ul>
+            <li>ATS Parsing compatibility (Headings, fonts, structure)</li>
+            <li>Role-specific keyword density &amp; core skills</li>
+            <li>Generates 5 personalized mock interview questions</li>
+          </ul>
+        </div>
+
+        <button type="button" class="btn-scan" id="scanBtn" onclick="startScan()">
+          <span>⚡ Analyze Resume &amp; Generate Questions</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- SCANNING PROGRESS PANEL -->
+    <div class="scanning-panel" id="scanningPanel">
+      <div class="scan-spinner"></div>
+      <h3 class="scan-status-text" id="scanStatus">Reading resume structure...</h3>
+      <p class="scan-status-sub">Evaluating formatting, parsing skills, and generating questions</p>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <!-- RESULTS & QUESTIONS REPORT -->
+    <div class="results-panel" id="resultsPanel">
+      
+      <!-- Top Score Hero -->
+      <div class="results-header">
+        <div class="score-circle-wrap">
+          <div class="score-circle">
+            <div class="score-circle-inner">
+              <div class="score-number" id="atsScoreVal">86%</div>
+              <div class="score-label">ATS Match</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="score-details">
+          <h2>Strong Candidate Profile!</h2>
+          <p id="atsSummaryText">Your resume matches 86% of the essential qualifications and keywords for the selected role. Review the recommendations below to reach 95%+.</p>
+          <div class="score-badges">
+            <span class="badge-pill">✓ Clear Section Headers</span>
+            <span class="badge-pill">✓ Quantifiable Metrics</span>
+            <span class="badge-pill">✓ Single Column Layout</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Breakdown Grid -->
+      <div class="breakdown-grid">
+        <!-- Keywords -->
+        <div class="keywords-card">
+          <h3>Keyword Matching Analysis</h3>
+          <p>Keywords detected in your resume vs required by top tech recruiters:</p>
+          
+          <div class="keyword-group">
+            <div class="kw-title">Found in your resume (12)</div>
+            <div class="pill-list" id="foundKeywords">
+              <span class="pill-found">JavaScript</span>
+              <span class="pill-found">React.js</span>
+              <span class="pill-found">REST APIs</span>
+              <span class="pill-found">Node.js</span>
+              <span class="pill-found">Git</span>
+              <span class="pill-found">SQL</span>
+            </div>
+          </div>
+
+          <div class="keyword-group">
+            <div class="kw-title">Missing Recommended Keywords (4)</div>
+            <div class="pill-list" id="missingKeywords">
+              <span class="pill-missing">+ Docker / Containers</span>
+              <span class="pill-missing">+ TypeScript</span>
+              <span class="pill-missing">+ Unit Testing / Jest</span>
+              <span class="pill-missing">+ CI/CD Pipeline</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section Scores -->
+        <div class="keywords-card">
+          <h3>Section Scores</h3>
+          <p>Breakdown across standard ATS criteria:</p>
+
+          <div style="margin-bottom:1rem;">
+            <div style="display:flex;justify-content:space-between;font-size:.84rem;font-weight:700;margin-bottom:.3rem;">
+              <span>Technical Skills Relevance</span>
+              <span style="color:var(--green)">90%</span>
+            </div>
+            <div style="height:6px;background:#E2E8F0;border-radius:3px;overflow:hidden;">
+              <div style="width:90%;height:100%;background:var(--green);"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <div style="display:flex;justify-content:space-between;font-size:.84rem;font-weight:700;margin-bottom:.3rem;">
+              <span>Work Experience &amp; Impact</span>
+              <span style="color:var(--c1)">82%</span>
+            </div>
+            <div style="height:6px;background:#E2E8F0;border-radius:3px;overflow:hidden;">
+              <div style="width:82%;height:100%;background:var(--c1);"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <div style="display:flex;justify-content:space-between;font-size:.84rem;font-weight:700;margin-bottom:.3rem;">
+              <span>Format &amp; Readability</span>
+              <span style="color:var(--p2)">95%</span>
+            </div>
+            <div style="height:6px;background:#E2E8F0;border-radius:3px;overflow:hidden;">
+              <div style="width:95%;height:100%;background:var(--p2);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Generated Questions -->
+      <div class="questions-box">
+        <div class="qb-header">
+          <div class="qb-title">
+            <h3>Custom Interview Questions (From Your Resume)</h3>
+            <p>Anticipate these exact questions in your real interview rounds:</p>
+          </div>
+          <a href="starttest.html?source=resume" class="btn-launch-test">
+            <span>⏱️ Practice in Test Engine</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+
+        <div id="questionsContainer">
+          <div class="q-item">
+            <div class="q-num">Question 1 • Project Deep Dive</div>
+            <div class="q-text">"Can you explain how you designed the API architecture for your recent project mentioned in your experience section, and how you handled asynchronous state management?"</div>
+            <span class="q-tag">Tagged: System Architecture &amp; State</span>
+          </div>
+
+          <div class="q-item">
+            <div class="q-num">Question 2 • Technical Problem Solving</div>
+            <div class="q-text">"You listed React and Node.js in your skills. What strategies do you use to optimize database queries and frontend render performance?"</div>
+            <span class="q-tag">Tagged: Performance Optimization</span>
+          </div>
+
+          <div class="q-item">
+            <div class="q-num">Question 3 • Behavioral &amp; Team Collaboration</div>
+            <div class="q-text">"Tell me about a time you encountered a production bug or merge conflict during team sprints and how you resolved it under pressure."</div>
+            <span class="q-tag">Tagged: Teamwork &amp; Git Workflow</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== SCRIPT ==================== -->
+  <script>
+    // Load logged in user
+    window.addEventListener('DOMContentLoaded', () => {
+      const userRaw = localStorage.getItem('interfinix_user');
+      if (userRaw) {
+        try {
+          const user = JSON.parse(userRaw);
+          const initial = user.name.charAt(0).toUpperCase();
+          document.getElementById('navAvatar').textContent = initial;
+          document.getElementById('navUserName').textContent = user.name;
+        } catch(e) {}
+      }
+    });
+
+    // Drawer Toggle
+    function toggleDrawer() {
+      document.getElementById('drawer').classList.toggle('open');
+      document.getElementById('drawerBackdrop').classList.toggle('open');
+    }
+
+    // Drag and Drop Handlers
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('resumeFileInput');
+    let selectedFile = null;
+
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('dragover');
+    });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('dragover');
+      if (e.dataTransfer.files.length) {
+        processFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    function handleFileSelect(e) {
+      if (e.target.files.length) {
+        processFile(e.target.files[0]);
+      }
+    }
+
+    function processFile(file) {
+      selectedFile = file;
+      document.getElementById('fileNameDisplay').textContent = file.name;
+      const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+      document.getElementById('fileSizeDisplay').textContent = `${sizeMB} MB • Ready for scanning`;
+      document.getElementById('filePreview').classList.add('show');
+    }
+
+    function removeFile() {
+      selectedFile = null;
+      fileInput.value = '';
+      document.getElementById('filePreview').classList.remove('show');
+      document.getElementById('resultsPanel').classList.remove('show');
+    }
+
+    // Scan simulation
+    function startScan() {
+      if (!selectedFile) {
+        // Auto-simulate sample if no file chosen
+        processFile({ name: 'Sample_Tech_Resume.pdf', size: 1420000 });
+      }
+
+      const scanBtn = document.getElementById('scanBtn');
+      const panel = document.getElementById('scanningPanel');
+      const results = document.getElementById('resultsPanel');
+      const progress = document.getElementById('progressFill');
+      const statusText = document.getElementById('scanStatus');
+
+      scanBtn.disabled = true;
+      results.classList.remove('show');
+      panel.classList.add('active');
+      panel.scrollIntoView({ behavior: 'smooth' });
+
+      const steps = [
+        { pct: '25%', text: 'Parsing document structure and headings...' },
+        { pct: '55%', text: 'Matching technical skills with domain keywords...' },
+        { pct: '80%', text: 'Scoring ATS readability and impact metrics...' },
+        { pct: '100%', text: 'Generating tailored interview questions...' }
+      ];
+
+      let idx = 0;
+      const interval = setInterval(() => {
+        if (idx < steps.length) {
+          progress.style.width = steps[idx].pct;
+          statusText.textContent = steps[idx].text;
+          idx++;
+        } else {
+          clearInterval(interval);
+          setTimeout(() => {
+            panel.classList.remove('active');
+            results.classList.add('show');
+            scanBtn.disabled = false;
+            results.scrollIntoView({ behavior: 'smooth' });
+          }, 400);
+        }
+      }, 550);
+    }
+  </script>
+</body>
+</html>
