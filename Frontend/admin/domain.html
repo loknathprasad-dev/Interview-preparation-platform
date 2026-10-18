@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Domain Management | Interfinix</title>
+
+    <link rel="stylesheet" href="domain.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+
+            <h2>INTERFINIX</h2>
+
+            <a href="dashboard.html">Dashboard</a>
+
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <h1>Domain Management</h1>
+
+        <p class="subtitle">
+            Add, view, update and delete interview preparation domains.
+        </p>
+
+        <!-- Add / Update Domain Section -->
+        <section class="form-section">
+
+            <h2 id="formTitle">Add New Domain</h2>
+
+            <form id="domainForm">
+
+                <label for="domainName">Domain Name</label>
+
+                <input
+                    type="text"
+                    id="domainName"
+                    placeholder="Enter domain name"
+                    required
+                >
+
+                <label for="description">Description</label>
+
+                <textarea
+                    id="description"
+                    rows="4"
+                    placeholder="Enter domain description"
+                    required
+                ></textarea>
+
+                <div class="form-buttons">
+
+                    <button type="submit" id="submitButton">
+                        Add Domain
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelButton"
+                        style="display: none;"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- Domains List Section -->
+        <section class="domains-section">
+
+            <div class="section-header">
+
+                <h2>All Domains</h2>
+
+                <button type="button" id="refreshButton">
+                    Refresh
+                </button>
+
+            </div>
+
+            <div id="domainsContainer">
+
+                <p>Loading domains...</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="domain.js"></script>
+
+</body>
+
+</html>

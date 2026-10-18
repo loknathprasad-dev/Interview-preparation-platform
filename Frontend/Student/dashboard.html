@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | Interfinix</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+
+            <h2>INTERFINIX</h2>
+
+            <div class="nav-links">
+
+                <a href="dashboard.html">Home</a>
+
+                <a href="#">Result</a>
+
+                <a href="#">Ask Query</a>
+
+                <a href="#">Progress Dashboard</a>
+
+                <a href="#">Chatbot</a>
+
+                <a href="#">Student Profile</a>
+
+                <button type="button" id="logoutButton">
+                    Logout
+                </button>
+
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+
+            <h1>Welcome to INTERFINIX</h1>
+
+            <p>
+                Improve your interview skills by practicing
+                questions from different domains.
+            </p>
+
+        </section>
+
+        <!-- Domains Section -->
+        <section class="domains-section">
+
+            <h2>Choose a Domain to Practice</h2>
+
+            <p class="subtitle">
+                Select your preferred domain and start practicing.
+            </p>
+
+            <div id="domainsContainer" class="domains-container">
+
+                <p>Loading domains...</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>

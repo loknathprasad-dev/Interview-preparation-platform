@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Interfinix</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2 class="logo">INTERFINIX</h2>
+
+        <nav>
+            <a href="dashboard.html" class="active">Dashboard</a>
+
+            <a href="domain.html">Domain Management</a>
+
+            <a href="faculty.html">Faculty Management</a>
+
+            <a href="help-replies.html">Help Reply Management</a>
+        </nav>
+
+        <button id="logoutButton">Logout</button>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="dashboard-header">
+
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p>Manage your Interfinix platform</p>
+            </div>
+
+            <div class="admin-profile">
+                <span id="adminName">Admin</span>
+            </div>
+
+        </header>
+
+        <!-- Statistics -->
+        <section class="stats-section">
+
+            <div class="stat-card">
+                <h3>Total Domains</h3>
+                <p id="totalDomains">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Faculty</h3>
+                <p id="totalFaculty">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Help Tickets</h3>
+                <p id="totalTickets">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Pending Tickets</h3>
+                <p id="pendingTickets">0</p>
+            </div>
+
+        </section>
+
+        <!-- Management -->
+        <section class="management-section">
+
+            <h2>Management Panel</h2>
+
+            <div class="management-grid">
+
+                <div class="management-card">
+                    <h3>Domain Management</h3>
+                    <p>Add, update and manage interview domains.</p>
+
+                    <a href="domain.html">Manage Domains</a>
+                </div>
+
+                <div class="management-card">
+                    <h3>Faculty Management</h3>
+                    <p>Create faculty accounts and manage faculty details.</p>
+
+                    <a href="faculty.html">Manage Faculty</a>
+                </div>
+
+                <div class="management-card">
+                    <h3>Help Reply Management</h3>
+                    <p>View student help tickets and send replies.</p>
+
+                    <a href="help-replies.html">View Tickets</a>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>

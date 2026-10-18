@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Faculty Management | Interfinix</title>
+
+    <link rel="stylesheet" href="faculty.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2 class="logo">INTERFINIX</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="domain.html">Domain Management</a>
+            <a href="faculty.html" class="active">Faculty Management</a>
+            <a href="help-replies.html">Help Reply Management</a>
+        </nav>
+
+        <button id="logoutButton">Logout</button>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="page-header">
+
+            <div>
+                <h1>Faculty Management</h1>
+                <p>Create and manage faculty accounts</p>
+            </div>
+
+            <button id="showFormButton" class="primary-btn">
+                + Add Faculty
+            </button>
+
+        </header>
+
+        <!-- Faculty Form -->
+        <section class="form-section" id="facultyFormSection">
+
+            <h2 id="formTitle">Add New Faculty</h2>
+
+            <form id="facultyForm">
+
+                <input type="hidden" id="facultyId">
+
+                <div class="form-grid">
+
+                    <div class="input-group">
+                        <label for="facultyName">Faculty Name</label>
+                        <input
+                            type="text"
+                            id="facultyName"
+                            placeholder="Enter faculty name"
+                            required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="employeeId">Employee ID</label>
+                        <input
+                            type="text"
+                            id="employeeId"
+                            placeholder="Enter employee ID"
+                            required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="facultyEmail">Email Address</label>
+                        <input
+                            type="email"
+                            id="facultyEmail"
+                            placeholder="Enter faculty email"
+                            required>
+                    </div>
+
+                    <div class="input-group" id="passwordGroup">
+                        <label for="facultyPassword">Password</label>
+                        <input
+                            type="password"
+                            id="facultyPassword"
+                            placeholder="Create faculty password"
+                            minlength="8"
+                            required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="domainId">Assign Domain</label>
+
+                        <select id="domainId" required>
+                            <option value="">Select Domain</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group" id="statusGroup">
+                        <label for="facultyStatus">Status</label>
+
+                        <select id="facultyStatus">
+                            <option value="ACTIVE">Active</option>
+                            <option value="INACTIVE">Inactive</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-buttons">
+
+                    <button type="submit" class="primary-btn" id="saveButton">
+                        Save Faculty
+                    </button>
+
+                    <button type="button" class="secondary-btn" id="cancelButton">
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- Faculty List -->
+        <section class="faculty-section">
+
+            <div class="section-header">
+                <h2>Faculty List</h2>
+                <span id="facultyCount">Total Faculty: 0</span>
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Faculty ID</th>
+                            <th>Employee ID</th>
+                            <th>Faculty Name</th>
+                            <th>Email</th>
+                            <th>Assigned Domain</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="facultyTableBody">
+                        <tr>
+                            <td colspan="7">Loading faculty...</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="faculty.js"></script>
+
+</body>
+
+</html>

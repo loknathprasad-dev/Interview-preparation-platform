@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Help Reply Management | Interfinix</title>
+
+    <link rel="stylesheet" href="help-replies.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <h2>INTERFINIX</h2>
+
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <h1>Help Reply Management</h1>
+
+        <p class="subtitle">
+            Manage student help tickets and send replies.
+        </p>
+
+        <!-- Student Help Tickets Section -->
+        <section class="tickets-section">
+
+            <h2>Student Help Tickets</h2>
+
+            <div id="ticketsContainer">
+
+                <p>Loading tickets...</p>
+
+            </div>
+
+        </section>
+
+        <!-- Send Reply Section -->
+        <section class="reply-section">
+
+            <h2>Send Reply</h2>
+
+            <form id="replyForm">
+
+                <label for="ticketId">Ticket ID</label>
+
+                <input
+                    type="number"
+                    id="ticketId"
+                    placeholder="Enter Ticket ID"
+                    min="1"
+                    required
+                >
+
+                <label for="replyText">Your Reply</label>
+
+                <textarea
+                    id="replyText"
+                    rows="5"
+                    placeholder="Write your reply here..."
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Send Reply
+                </button>
+
+            </form>
+
+            <p id="message"></p>
+
+        </section>
+
+        <!-- Previous Replies Section -->
+        <section class="replies-section">
+
+            <h2>Previous Replies</h2>
+
+            <div id="repliesContainer">
+
+                <p>Select a ticket to view previous replies.</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="help-replies.js"></script>
+
+</body>
+
+</html>

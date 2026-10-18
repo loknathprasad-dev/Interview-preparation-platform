@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Help Tickets | Interfinix</title>
+
+    <link rel="stylesheet" href="help-tickets.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <h2>INTERFINIX</h2>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="help-container">
+
+            <h1>Help Ticket Management</h1>
+            <p>Submit your queries and manage your support tickets.</p>
+
+            <!-- Add Ticket Form -->
+            <div class="ticket-form">
+                <h2>Submit a Help Ticket</h2>
+
+                <form id="ticketForm">
+
+                    <label for="subject">Subject</label>
+                    <input
+                        type="text"
+                        id="subject"
+                        placeholder="Enter ticket subject"
+                        required
+                    >
+
+                    <label for="description">Description</label>
+                    <textarea
+                        id="description"
+                        placeholder="Describe your problem"
+                        rows="5"
+                        required
+                    ></textarea>
+
+                    <button type="submit" id="submitButton">
+                        Submit Ticket
+                    </button>
+
+                    <button type="button" id="cancelButton"
+                            style="display: none;">
+                        Cancel
+                    </button>
+
+                </form>
+            </div>
+
+            <!-- Ticket List -->
+            <div class="ticket-list">
+
+                <h2>My Help Tickets</h2>
+
+                <button type="button" id="refreshButton">
+                    Refresh Tickets
+                </button>
+
+                <div id="ticketsContainer">
+                    <p>Loading tickets...</p>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+    <script src="help-tickets.js"></script>
+
+</body>
+</html>
