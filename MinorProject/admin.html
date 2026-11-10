@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel – Interfinix</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        INTERFINIX
+      </a>
+      <div class="nav-links" style="display:flex;">
+        <a href="admin.html">Faculty</a>
+        <a href="domains.html">Domains</a>
+        <span class="admin-badge">Admin Panel</span>
+        <a href="#" id="logoutBtn" class="nav-cta">Log Out</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="admin-section">
+    <div class="admin-wrap">
+
+      <h1 class="admin-title">Manage Faculty</h1>
+      <p class="admin-sub">Add faculty members and assign each one a domain. They can log in with the email and password you set.</p>
+
+      <div class="admin-card">
+        <h2 class="admin-card-title">Add New Faculty</h2>
+        <form id="facultyForm" class="faculty-form">
+          <div>
+            <label for="fName">Full Name</label>
+            <input type="text" id="fName" placeholder="Faculty name" required />
+          </div>
+          <div>
+            <label for="fEmail">Email (used as username)</label>
+            <input type="email" id="fEmail" placeholder="faculty@example.com" required />
+          </div>
+          <div>
+            <label for="fPassword">Password</label>
+            <input type="text" id="fPassword" placeholder="Set a password" required minlength="6" />
+          </div>
+          <button type="submit" class="auth-btn">Add Faculty</button>
+
+          <div style="grid-column: 1 / -1;">
+            <label>Assign Domain (one)</label>
+            <div id="addDomainChecks" style="display:flex; flex-wrap:wrap; gap:.6rem 1.6rem; margin-top:.4rem;"></div>
+          </div>
+        </form>
+        <p class="auth-msg" id="adminMsg"></p>
+      </div>
+
+      <!-- EDIT PANEL (hidden until Edit is clicked) -->
+      <div class="admin-card" id="editCard" style="display:none;">
+        <h2 class="admin-card-title" id="editTitle">Edit Faculty</h2>
+        <div class="faculty-form" style="margin-bottom:1rem;">
+          <div>
+            <label for="eName">Full Name</label>
+            <input type="text" id="eName" />
+          </div>
+          <div>
+            <label for="eEmail">Email (used as username)</label>
+            <input type="email" id="eEmail" />
+          </div>
+          <div>
+            <label for="ePassword">Password</label>
+            <input type="text" id="ePassword" />
+          </div>
+          <div></div>
+          <div style="grid-column: 1 / -1;">
+            <label>Domain (one)</label>
+            <div id="editDomainChecks" style="display:flex; flex-wrap:wrap; gap:.6rem 1.6rem; margin-top:.4rem;"></div>
+          </div>
+        </div>
+        <button type="button" class="auth-btn" id="saveEdit" style="width:auto; padding:.7rem 1.6rem;">Save Changes</button>
+        <button type="button" class="del-btn" id="cancelEdit" style="margin-left:.6rem;">Cancel</button>
+      </div>
+
+      <div class="admin-card">
+        <h2 class="admin-card-title">All Faculty</h2>
+        <div class="table-scroll">
+          <table class="faculty-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Domain</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="facultyBody">
+              <tr><td colspan="7" class="empty-row">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="admin.js"></script>
+</body>
+
+</html>

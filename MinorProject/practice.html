@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practice – Interfinix</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="portal.css" />
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        INTERFINIX
+      </a>
+      <div class="nav-links" style="display:flex;">
+        <a href="student.html">Dashboard</a>
+        <span class="admin-badge">Student</span>
+        <a href="#" id="logoutBtn" class="nav-cta">Log Out</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="portal-section">
+    <div class="portal-wrap" style="max-width:780px;">
+      <h1 class="portal-title" id="title">Practice</h1>
+      <p class="portal-sub" id="counter">Loading questions...</p>
+
+      <div class="admin-card" id="qCard" style="display:none;">
+        <p id="qText" style="font-size:1.15rem; font-weight:700; margin-bottom:1.2rem;"></p>
+        <textarea id="answerBox" placeholder="Type your answer here"
+          style="width:100%; min-height:160px; font-family:inherit; font-size:.95rem; padding:.75rem .9rem; border:1px solid var(--line); border-radius:8px; background:var(--bg); outline:none; margin-bottom:1.2rem;"></textarea>
+
+        <button type="button" class="del-btn" id="prevBtn">Previous</button>
+        <button type="button" class="auth-btn" id="nextBtn" style="width:auto; padding:.7rem 1.6rem; margin-left:.5rem;">Next</button>
+        <button type="button" class="auth-btn" id="submitBtn" style="display:none; width:auto; padding:.7rem 1.6rem; margin-left:.5rem;">Submit Test</button>
+      </div>
+
+      <p class="auth-msg" id="msg"></p>
+    </div>
+  </section>
+
+  <script src="practice.js"></script>
+</body>
+
+</html>

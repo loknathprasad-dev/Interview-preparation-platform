@@ -1,0 +1,79 @@
+/* LOGIN aur SIGNUP page ka design */
+
+.auth-section {
+  min-height: calc(100vh - 68px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 5%;
+  background: var(--bg);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
+  border-radius: 14px;
+  padding: 2.2rem 2rem;
+  box-shadow: 0 16px 40px rgba(20, 33, 61, .08);
+}
+
+/* sabse upar wali "Don't have an account?" line */
+.auth-top {
+  text-align: center;
+  font-size: .9rem;
+  color: var(--muted);
+  background: #FFF4EC;
+  border-radius: 8px;
+  padding: .6rem;
+  margin-bottom: 1.5rem;
+}
+.auth-top a { color: var(--accent); font-weight: 700; }
+.auth-top a:hover { text-decoration: underline; }
+
+.auth-title { font-size: 1.7rem; font-weight: 800; margin-bottom: .3rem; }
+.auth-sub { color: var(--muted); font-size: .92rem; margin-bottom: 1.5rem; }
+
+.auth-card label {
+  display: block;
+  font-size: .85rem;
+  font-weight: 600;
+  margin-bottom: .35rem;
+}
+.auth-card input,
+.auth-card select {
+  width: 100%;
+  font-family: inherit;
+  font-size: .95rem;
+  padding: .75rem .9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  margin-bottom: 1.1rem;
+  outline: none;
+  transition: border-color .2s;
+}
+.auth-card input:focus,
+.auth-card select:focus { border-color: var(--accent); }
+
+/* error ya success ka message */
+.auth-msg { min-height: 1.2rem; font-size: .88rem; font-weight: 600; margin-bottom: .8rem; }
+.auth-msg.error { color: #DC2626; }
+.auth-msg.ok { color: var(--teal); }
+
+.auth-btn {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: .85rem;
+  cursor: pointer;
+  transition: background .2s;
+}
+.auth-btn:hover { background: var(--accent-dark); }

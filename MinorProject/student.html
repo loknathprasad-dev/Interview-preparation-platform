@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard – Interfinix</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="portal.css" />
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        INTERFINIX
+      </a>
+      <div class="nav-links" style="display:flex;">
+        <a href="student.html">Dashboard</a>
+        <a href="results.html">My Results</a>
+        <a href="myqueries.html">My Queries</a>
+        <span class="admin-badge">Student</span>
+        <a href="#" id="logoutBtn" class="nav-cta">Log Out</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="portal-section">
+    <div class="portal-wrap">
+      <h1 class="portal-title" id="welcome">Welcome</h1>
+      <p class="portal-sub">Pick a domain to start practising.</p>
+      <p class="portal-msg" id="portalMsg"></p>
+
+      <div class="portal-grid" id="domainGrid"></div>
+    </div>
+  </section>
+
+  <script src="student.js"></script>
+</body>
+
+</html>

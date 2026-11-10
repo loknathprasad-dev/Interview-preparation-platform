@@ -1,0 +1,473 @@
+/* ============================================================
+   1. COLORS (design badalna ho toh sirf yahan badal)
+============================================================ */
+:root {
+  --ink: #14213D;        /* dark navy: text aur dark sections */
+  --accent: #E8590C;     /* orange: buttons aur highlights */
+  --accent-dark: #C2410C;
+  --teal: #0F766E;
+  --bg: #FBF8F3;         /* page ka cream background */
+  --card: #FFFFFF;
+  --line: #E7E2D8;       /* halki borders */
+  --muted: #5F6B7A;      /* chhota grey text */
+}
+
+/* ============================================================
+   2. BASIC RESET (browser ki default spacing hatata hai)
+============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ============================================================
+   3. SCROLL ANIMATION (script.js ise chalata hai)
+============================================================ */
+.sr { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+.sr.vis { opacity: 1; transform: none; }
+.delay-1 { transition-delay: .1s; }
+.delay-2 { transition-delay: .2s; }
+.delay-3 { transition-delay: .3s; }
+.delay-4 { transition-delay: .4s; }
+
+/* ============================================================
+   4. COMMON PARTS (har section mein use hote hain)
+============================================================ */
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 5%; }
+.section { padding: 5.5rem 0; }
+
+.section-tag {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 3px;
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: .8rem;
+}
+.section-sub { color: var(--muted); max-width: 560px; font-size: 1rem; }
+
+/* ============================================================
+   5. NAVBAR
+============================================================ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  background: var(--ink);
+  border-bottom: 3px solid var(--accent);
+}
+.nav-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+}
+.nav-logo-dot { width: 10px; height: 10px; background: var(--accent); border-radius: 2px; transform: rotate(45deg); }
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-links a { color: #C9D1E0; font-size: .92rem; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: #fff; }
+.nav-links a.nav-cta {
+  background: var(--accent);
+  color: #fff;
+  padding: .5rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 700;
+  transition: background .2s;
+}
+.nav-links a.nav-cta:hover { background: var(--accent-dark); }
+
+/* teen line wala menu icon (sirf mobile pe dikhega) */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+.hamburger span { width: 24px; height: 2px; background: #fff; }
+
+/* ============================================================
+   6. HERO (sabse upar wala bada hissa)
+============================================================ */
+.hero-section {
+  position: relative;
+  background: var(--ink);
+  background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 26px 26px;
+  min-height: calc(100vh - 68px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.orb-mid {
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,89,12,.25), transparent 70%);
+}
+.hero-inner {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 5rem 5% 6rem;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: .78rem;
+  font-weight: 600;
+  color: #E3E8F2;
+  border: 1px solid rgba(255,255,255,.25);
+  padding: .35rem 1rem;
+  border-radius: 50px;
+  margin-bottom: 1.4rem;
+}
+.hero-kicker-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.hero-title {
+  font-size: clamp(2.5rem, 5.5vw, 3.9rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 1.3rem;
+}
+.hero-title em { font-style: normal; color: #FFA45C; }
+.hero-desc { color: #B8C2D6; font-size: 1.05rem; max-width: 470px; margin-bottom: 2rem; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.2rem; }
+
+.btn-hero-primary {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  padding: .9rem 2rem;
+  border-radius: 6px;
+  transition: background .2s, transform .2s;
+}
+.btn-hero-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+.btn-hero-outline {
+  border: 2px solid rgba(255,255,255,.4);
+  color: #fff;
+  font-weight: 600;
+  padding: .85rem 1.9rem;
+  border-radius: 6px;
+  transition: border-color .2s, background .2s;
+}
+.btn-hero-outline:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+
+.hero-chips { display: flex; gap: .8rem; flex-wrap: wrap; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .82rem;
+  font-weight: 500;
+  color: #D5DCEA;
+  background: rgba(255,255,255,.07);
+  padding: .4rem 1rem;
+  border-radius: 6px;
+}
+.chip-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* hero ki image */
+.hero-visual-wrap { position: relative; }
+.hero-img-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 6px solid rgba(255,255,255,.1);
+  box-shadow: 0 25px 60px rgba(0,0,0,.4);
+}
+.hero-img-card img { width: 100%; height: 360px; object-fit: cover; }
+.hero-img-fb {
+  height: 360px;
+  background: #1F3158;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+}
+.float-badge {
+  position: absolute;
+  background: #fff;
+  border-radius: 10px;
+  padding: .8rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+}
+.fb-bot { bottom: -20px; left: -24px; }
+.fb-icon { font-size: 1.5rem; }
+.fb-text { font-size: .75rem; color: var(--muted); }
+.fb-text strong { display: block; font-size: .88rem; color: var(--ink); }
+
+/* hero ke neeche ki wave */
+.wave-divider { position: absolute; bottom: -1px; left: 0; width: 100%; line-height: 0; }
+.wave-divider svg { width: 100%; height: 50px; }
+
+/* ============================================================
+   7. STATS BAR (5000+, 9, 200+, 92%)
+============================================================ */
+.stats-bar { background: #fff; padding: 2.2rem 0; border-bottom: 1px solid var(--line); }
+.stats-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.stat-item { text-align: center; padding: 0 1rem; }
+.stat-num { font-size: 2.6rem; font-weight: 800; color: var(--accent); line-height: 1; }
+.stat-lbl { font-size: .85rem; font-weight: 600; color: var(--muted); margin-top: .4rem; }
+.stat-div { width: 1px; height: 46px; background: var(--line); }
+
+/* ============================================================
+   8. FEATURES (4 cards)
+============================================================ */
+.features-section { background: var(--bg); }
+.features-header { text-align: center; margin-bottom: 3.5rem; }
+.features-header .section-sub { margin: 0 auto; }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+}
+.feat-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 2rem 1.6rem;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+.feat-card:hover { transform: translateY(-6px); box-shadow: 0 14px 34px rgba(20,33,61,.1); border-color: var(--ink); }
+.feat-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+.fc-dashboard .feat-icon-wrap { background: #FFE8D9; }
+.fc-jobs .feat-icon-wrap { background: #D6F0EC; }
+.fc-resume .feat-icon-wrap { background: #FFF1C9; }
+.fc-query .feat-icon-wrap { background: #E4E9F7; }
+.feat-title { font-size: 1.08rem; font-weight: 700; margin-bottom: .5rem; }
+.feat-desc { font-size: .88rem; color: var(--muted); }
+
+/* ============================================================
+   9. JOB DOMAINS (9 cards)
+============================================================ */
+.domains-section { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.domains-header { text-align: center; margin-bottom: 3.5rem; }
+.domains-header .section-sub { margin: 0 auto; }
+.domains-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+.domain-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  transition: transform .3s, box-shadow .3s;
+}
+.domain-card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(20,33,61,.1); }
+.d-icon-wrap { font-size: 1.9rem; margin-bottom: .5rem; }
+.d-name { font-size: 1rem; font-weight: 700; }
+.d-desc { font-size: .84rem; color: var(--muted); }
+
+/* ============================================================
+   10. HOW IT WORKS (4 steps)
+============================================================ */
+.how-section { background: var(--bg); }
+.how-header { text-align: center; margin-bottom: 3.5rem; }
+.how-header .section-sub { margin: 0 auto; }
+.how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.how-step { text-align: center; padding: 0 .5rem; }
+.how-num {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1.2rem;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid var(--accent);
+}
+.how-step-title { font-weight: 700; font-size: 1.05rem; margin-bottom: .4rem; }
+.how-step-desc { font-size: .88rem; color: var(--muted); }
+
+/* ============================================================
+   11. TESTIMONIALS (students ke reviews)
+============================================================ */
+.trust-section { background: var(--ink); padding: 5.5rem 0; }
+.trust-inner { max-width: 1120px; margin: 0 auto; padding: 0 5%; }
+.trust-label {
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+}
+.trust-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+.trust-card {
+  background: #1C2D50;
+  border-radius: 12px;
+  padding: 2rem 1.7rem;
+  border-top: 3px solid var(--accent);
+}
+.trust-stars { color: #FFB020; letter-spacing: 3px; margin-bottom: 1rem; }
+.trust-text { color: #D5DCEA; font-size: .93rem; font-style: italic; margin-bottom: 1.3rem; }
+.trust-author { color: #fff; font-weight: 700; }
+.trust-role { color: #8FA0C0; font-size: .82rem; }
+
+/* ============================================================
+   12. CTA (last ka bada orange box)
+============================================================ */
+.cta-section { padding: 5rem 5%; background: var(--bg); }
+.cta-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+  padding: 3.5rem 2rem;
+  border-radius: 16px;
+}
+.cta-card h2 { font-size: clamp(1.6rem, 3.5vw, 2.3rem); font-weight: 800; margin-bottom: .8rem; }
+.cta-card p { max-width: 520px; margin: 0 auto 2rem; opacity: .92; }
+.cta-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.btn-cta-white {
+  background: #fff;
+  color: var(--accent-dark);
+  font-weight: 700;
+  padding: .9rem 2rem;
+  border-radius: 6px;
+  transition: transform .2s;
+}
+.btn-cta-white:hover { transform: translateY(-3px); }
+.btn-cta-ghost {
+  border: 2px solid rgba(255,255,255,.7);
+  color: #fff;
+  font-weight: 600;
+  padding: .85rem 1.9rem;
+  border-radius: 6px;
+  transition: background .2s;
+}
+.btn-cta-ghost:hover { background: rgba(255,255,255,.15); }
+
+/* ============================================================
+   13. FOOTER
+============================================================ */
+footer { background: var(--ink); color: #B8C2D6; padding: 4rem 0 1.5rem; }
+.footer-inner { max-width: 1120px; margin: 0 auto; padding: 0 5%; }
+.footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 2.5rem; }
+.foot-brand-name {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  margin-bottom: .9rem;
+}
+.foot-brand-desc { font-size: .88rem; max-width: 300px; margin-bottom: 1.2rem; }
+.foot-socials { display: flex; gap: .6rem; }
+.foot-social {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s;
+}
+.foot-social:hover { background: var(--accent); }
+.foot-col h4 { color: #fff; font-size: .95rem; margin-bottom: 1rem; }
+.foot-col a { display: block; font-size: .88rem; margin-bottom: .55rem; transition: color .2s; }
+.foot-col a:hover { color: var(--accent); }
+.foot-divider { border: none; border-top: 1px solid rgba(255,255,255,.12); margin: 2.5rem 0 1.3rem; }
+.foot-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .8rem;
+  font-size: .82rem;
+}
+.foot-bottom a:hover { color: var(--accent); }
+
+/* ============================================================
+   14. MOBILE / TABLET DESIGN
+============================================================ */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; padding-top: 3rem; }
+  .features-grid, .how-grid { grid-template-columns: repeat(2, 1fr); }
+  .domains-grid, .trust-cards { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .fb-bot { left: 10px; }
+  .stat-div { display: none; }
+}
+
+@media (max-width: 640px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--ink);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.5rem 5%;
+  }
+  .nav-links.open { display: flex; }
+  .features-grid, .how-grid, .domains-grid, .trust-cards, .footer-top { grid-template-columns: 1fr; }
+  .hero-img-card img, .hero-img-fb { height: 260px; }
+}

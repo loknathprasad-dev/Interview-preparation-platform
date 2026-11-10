@@ -1,0 +1,79 @@
+/* ============================================================
+   FAQ PAGE KA DESIGN
+============================================================ */
+
+/* upar ka navy hissa (About mein 2 column the, yahan sirf ek) */
+.faq-hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 4.5rem 5% 5rem;
+}
+
+/* sawaalon ki list ka dabba (beech mein, patla) */
+.faq-section { background: var(--bg); }
+.faq-wrap { max-width: 780px; margin: 0 auto; padding: 0 5%; }
+
+/* ek sawaal + jawab ka poora dabba */
+.faq-item {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.faq-item:hover { border-color: var(--ink); }
+
+/* sawaal wala button */
+.faq-q {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 1.2rem 1.5rem;
+}
+
+/* + ka chhota orange gola */
+.faq-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #FFE8D9;
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s, background .3s, color .3s;
+}
+
+/* jawab wala hissa: pehle band (height 0) rehta hai */
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease;
+}
+.faq-a p {
+  padding: 0 1.5rem 1.3rem;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* jab sawaal khula ho (JS 'open' class lagati hai) */
+.faq-item.open { border-color: var(--accent); box-shadow: 0 8px 24px rgba(20,33,61,.08); }
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  background: var(--accent);
+  color: #fff;
+}

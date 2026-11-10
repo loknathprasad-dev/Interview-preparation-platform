@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty Dashboard – Interfinix</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="portal.css" />
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        INTERFINIX
+      </a>
+      <div class="nav-links" style="display:flex;">
+        <span class="admin-badge">Faculty</span>
+        <a href="#" id="logoutBtn" class="nav-cta">Log Out</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="portal-section">
+    <div class="portal-wrap">
+      <h1 class="portal-title" id="welcome">Welcome</h1>
+      <p class="portal-sub" id="domainLine">Loading your domain...</p>
+
+      <div class="portal-grid" id="workGrid" style="display:none;">
+        <a href="questions.html" class="portal-card">
+          <div class="p-icon">📝</div>
+          <div class="p-name">Questions</div>
+          <div class="p-desc">Add, edit and remove questions for your domain.</div>
+        </a>
+        <a href="replies.html" class="portal-card">
+          <div class="p-icon">💬</div>
+          <div class="p-name">Student Queries</div>
+          <div class="p-desc">Reply to doubts students ask about your domain.</div>
+        </a>
+        <a href="tests.html" class="portal-card">
+          <div class="p-icon">✅</div>
+          <div class="p-name">Student Tests</div>
+          <div class="p-desc">Check student answers and give marks.</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script src="faculty.js"></script>
+</body>
+
+</html>

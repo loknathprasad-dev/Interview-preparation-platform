@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In – Interfinix</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        INTERFINIX
+      </a>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="login.html" class="nav-cta">Log In</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- LOGIN BOX -->
+  <section class="auth-section">
+    <div class="auth-card">
+
+      <p class="auth-top">Don't have an account? <a href="signup.html">Sign Up</a></p>
+
+      <h1 class="auth-title">Welcome back</h1>
+      <p class="auth-sub">choose your role.</p>
+
+      <form id="loginForm">
+        <label for="role">Login as</label>
+        <select id="role">
+          <option value="STUDENT">Student</option>
+          <option value="FACULTY">Faculty</option>
+          <option value="ADMIN">Admin</option>
+        </select>
+
+        <label for="email" id="emailLabel">Email</label>
+        <input type="text" id="email" placeholder="you@example.com" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="write your password" required />
+
+        <p class="auth-msg" id="loginMsg"></p>
+
+        <button type="submit" class="auth-btn">Log In</button>
+      </form>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script src="login.js"></script>
+</body>
+
+</html>

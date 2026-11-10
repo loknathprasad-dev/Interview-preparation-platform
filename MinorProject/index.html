@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Interfinix – Practice technical and HR interviews in a structured, personalised way that converts preparation into real job offers." />
+  <title>Interfinix – Interview Preparation Platform</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        INTERFINIX
+      </a>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="login.html" class="nav-cta">Log In</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="orb-mid"></div>
+    <div class="hero-inner">
+      <!-- LEFT -->
+      <div class="hero-left">
+        <div class="hero-kicker sr">
+          <span class="hero-kicker-dot"></span>
+          India's #1 Interview Prep Platform
+        </div>
+        <h1 class="hero-title sr delay-1">
+          Master Every<br><em>Interview.</em><br>Land Any Job.
+        </h1>
+        <p class="hero-desc sr delay-2">
+          Practice technical and HR interviews in a structured, personalised
+          way that converts preparation into real offers — across 9 in-demand domains.
+        </p>
+        <div class="hero-actions sr delay-3">
+          <a href="signup.html" class="btn-hero-primary">Get Started Free &rarr;</a>
+          <a href="login.html" class="btn-hero-outline">Log In</a>
+        </div>
+        <div class="hero-chips sr delay-4">
+          <div class="chip"><span class="chip-dot" style="background:#22D3EE;"></span>No credit card</div>
+          <div class="chip"><span class="chip-dot" style="background:#A78BFA;"></span>Free forever plan</div>
+          <div class="chip"><span class="chip-dot" style="background:#34D399;"></span>9 domains</div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="hero-visual-wrap sr delay-2">
+        <!--<div class="float-badge fb-top">
+          <div class="fb-icon">🎯</div>
+          <div class="fb-text"><strong>92% Placement</strong><span>Rate achieved</span></div>
+        </div>--->
+        <div class="hero-img-card">
+          <img src="pic1.jpeg" alt="Candidate in an interview session"
+            onerror="this.closest('.hero-img-card').innerHTML='<div class=hero-img-fb>🎓</div>'" />
+        </div>
+        <div class="float-badge fb-bot">
+          <div class="fb-icon">📊</div>
+          <div class="fb-text"><strong>5,000+ Students</strong><span>Trained & placed</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- wave bottom -->
+    <div class="wave-divider">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,60 L0,60 Z" fill="#FFFFFF" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- TAGLINE -->
+  <div class="stats-bar">
+    <div class="stats-inner" style="justify-content:center;">
+      <p class="sr" style="font-size:1.35rem; font-weight:800; text-align:center; max-width:760px;">
+        Practise like it's the real interview. <span style="color:var(--accent);">Get judged by real faculty.</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- CORE FEATURES -->
+  <section class="section features-section">
+    <div class="wrap">
+      <div class="features-header sr">
+        <div class="section-tag">✦ Platform Features</div>
+        <h2 class="section-title">Everything You Need to Succeed</h2>
+        <p class="section-sub">Four powerful tools built to take you from preparation to placement — structured, smart,
+          and personalised.</p>
+      </div>
+      <div class="features-grid">
+
+        <div class="feat-card fc-dashboard sr">
+          <div class="feat-icon-wrap">📊</div>
+          <div class="feat-title">Dashboard</div>
+          <div class="feat-desc">Track your progress, analyse domain-wise scores, and monitor your improvement streak
+            over time.</div>
+        </div>
+
+        <div class="feat-card fc-jobs sr delay-1">
+          <div class="feat-icon-wrap">💼</div>
+          <div class="feat-title">Job Field</div>
+          <div class="feat-desc">Choose from 9 high-demand career domains and get a curated interview flow built for
+            that role.</div>
+        </div>
+
+        <div class="feat-card fc-resume sr delay-2">
+          <div class="feat-icon-wrap">📄</div>
+          <div class="feat-title">Upload Resume</div>
+          <div class="feat-desc">Upload your resume and generate personalised interview questions tailored to your
+            experience and target role.</div>
+        </div>
+
+        <div class="feat-card fc-query sr delay-3">
+          <div class="feat-icon-wrap">💬</div>
+          <div class="feat-title">Query Support</div>
+          <div class="feat-desc">Raise doubts, get guidance from mentors, and track your query tickets — all within the
+            platform.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PICK YOUR JOB FIELD (display only) -->
+  <section class="section domains-section">
+    <div class="wrap">
+      <div class="domains-header sr">
+        <div class="section-tag">✦ Career Domains</div>
+        <h2 class="section-title">Pick Your Job Field</h2>
+        <p class="section-sub">9 specialised domains — each with dedicated question banks, study roadmaps, and expert
+          interview flows.</p>
+      </div>
+      <div class="domains-grid">
+
+        <div class="domain-card sr">
+          <div class="d-icon-wrap">🌐</div>
+          <div class="d-name">Web Development</div>
+          <div class="d-desc">HTML, CSS, JS, React, APIs and more</div>
+        </div>
+
+        <div class="domain-card sr delay-1">
+          <div class="d-icon-wrap">☕</div>
+          <div class="d-name">Java Developer</div>
+          <div class="d-desc">Core Java, OOP, Spring Boot, DSA</div>
+        </div>
+
+        <div class="domain-card sr delay-2">
+          <div class="d-icon-wrap">☁️</div>
+          <div class="d-name">Cloud Computing</div>
+          <div class="d-desc">AWS, Azure, GCP, DevOps, IaC</div>
+        </div>
+
+        <div class="domain-card sr">
+          <div class="d-icon-wrap">🎨</div>
+          <div class="d-name">Frontend Developer</div>
+          <div class="d-desc">React, Vue, TypeScript, Performance</div>
+        </div>
+
+        <div class="domain-card sr delay-1">
+          <div class="d-icon-wrap">⚙️</div>
+          <div class="d-name">Backend Developer</div>
+          <div class="d-desc">Node.js, Databases, REST, Architecture</div>
+        </div>
+
+        <div class="domain-card sr delay-2">
+          <div class="d-icon-wrap">🚀</div>
+          <div class="d-name">Full Stack Developer</div>
+          <div class="d-desc">End-to-end web development & deployment</div>
+        </div>
+
+        <div class="domain-card sr">
+          <div class="d-icon-wrap">🤖</div>
+          <div class="d-name">Machine Learning</div>
+          <div class="d-desc">Python, Scikit-learn, Deep Learning, NLP</div>
+        </div>
+
+        <div class="domain-card sr delay-1">
+          <div class="d-icon-wrap">🛡️</div>
+          <div class="d-name">Cyber Security</div>
+          <div class="d-desc">Network security, Ethical hacking, SOC</div>
+        </div>
+
+        <div class="domain-card sr delay-2">
+          <div class="d-icon-wrap">🧠</div>
+          <div class="d-name">DSA</div>
+          <div class="d-desc">Arrays, Trees, Graphs, DP, System Design</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how-section">
+    <div class="wrap">
+      <div class="how-header sr">
+        <div class="section-tag">✦ Simple Process</div>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-sub">Four steps to go from zero to interview-ready — structured, fast, and effective.</p>
+      </div>
+      <div class="how-grid">
+        <div class="how-step sr">
+          <div class="how-num">1</div>
+          <div class="how-step-title">Sign Up Free</div>
+          <div class="how-step-desc">Create your account in under 30 seconds. No credit card required.</div>
+        </div>
+        <div class="how-step sr delay-1">
+          <div class="how-num">2</div>
+          <div class="how-step-title">Choose Your Domain</div>
+          <div class="how-step-desc">Select from 9 curated job fields that match your career goal.</div>
+        </div>
+        <div class="how-step sr delay-2">
+          <div class="how-num">3</div>
+          <div class="how-step-title">Practice &amp; Learn</div>
+          <div class="how-step-desc">Take timed MCQ tests and explore deep-dive study roadmaps.</div>
+        </div>
+        <div class="how-step sr delay-3">
+          <div class="how-num">4</div>
+          <div class="how-step-title">Track &amp; Improve</div>
+          <div class="how-step-desc">Use your dashboard to spot weak areas and ace your interviews.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="trust-section">
+    <div class="trust-inner">
+      <div class="trust-label sr">What Students Say</div>
+      <div class="trust-cards">
+        <div class="trust-card sr">
+          <div class="trust-stars">★★★★★</div>
+          <div class="trust-text">"Interfinix helped me crack my backend developer interview at a top startup. The
+            domain-specific questions are spot on!"</div>
+          <div class="trust-author">Rahul Mehta</div>
+          <div class="trust-role">Backend Developer, Bangalore</div>
+        </div>
+        <div class="trust-card sr delay-1">
+          <div class="trust-stars">★★★★★</div>
+          <div class="trust-text">"The dashboard showed me exactly where I was weak. After two weeks of targeted
+            practice, I cleared my ML interview."</div>
+          <div class="trust-author">Priya Sharma</div>
+          <div class="trust-role">ML Engineer, Hyderabad</div>
+        </div>
+        <div class="trust-card sr delay-2">
+          <div class="trust-stars">★★★★★</div>
+          <div class="trust-text">"Resume upload + personalised questions is a game changer. Felt like the interviewer
+            already read my CV!"</div>
+          <div class="trust-author">Arjun Nair</div>
+          <div class="trust-role">Full Stack Developer, Pune</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-card sr">
+      <h2>Ready to Land Your Dream Job?</h2>
+      <p>Join 5,000+ students who turned structured practice into real placements. It's free to start.</p>
+      <div class="cta-btns">
+        <a href="signup.html" class="btn-cta-white">Create Free Account &rarr;</a>
+        <a href="about.html" class="btn-cta-ghost">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="foot-brand-name">
+            <div class="nav-logo-dot"></div>
+            INTERFINIX
+          </div>
+          <p class="foot-brand-desc">Empowering students for technical interviews through structured, domain-specific
+            practice that turns preparation into placements.</p>
+          <div class="foot-socials">
+            <a href="#" class="foot-social">🐦</a>
+            <a href="#" class="foot-social">💼</a>
+            <a href="#" class="foot-social">📸</a>
+            <a href="#" class="foot-social">🐙</a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>Platform</h4>
+          <a href="about.html">About</a>
+          <a href="login.html">Start Practice</a>
+          <a href="#">Dashboard</a>
+          <a href="#">Upload Resume</a>
+        </div>
+        <div class="foot-col">
+          <h4>Support</h4>
+          <a href="login.html">Log In</a>
+          <a href="signup.html">Sign Up</a>
+          <a href="#">Query Support</a>
+          <a href="faq.html">FAQ</a>
+          <a href="help.html">Help Center</a>
+        </div>
+        <div class="foot-col">
+          <h4>Who We Help</h4>
+          <a href="#">Job Seekers</a>
+          <a href="#">College Students</a>
+          <a href="#">Hackathon Teams</a>
+          <a href="#">Career Switchers</a>
+        </div>
+      </div>
+      <hr class="foot-divider" />
+      <div class="foot-bottom">
+        <span>&copy; 2025 Interfinix. All rights reserved.</span>
+        <span>
+          <a href="#">Terms of Service</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+          <a href="#">Privacy Policy</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

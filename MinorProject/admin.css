@@ -1,0 +1,88 @@
+/* ADMIN PAGE DESIGN */
+
+.admin-badge {
+  color: #fff;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .25);
+  padding: .35rem .9rem;
+  border-radius: 6px;
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+.admin-section { background: var(--bg); min-height: calc(100vh - 68px); padding: 3rem 0; }
+.admin-wrap { max-width: 980px; margin: 0 auto; padding: 0 5%; }
+
+.admin-title { font-size: 2rem; font-weight: 800; margin-bottom: .3rem; }
+.admin-sub { color: var(--muted); margin-bottom: 2rem; }
+
+.admin-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.8rem;
+  margin-bottom: 1.6rem;
+}
+.admin-card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 1.2rem; }
+
+/* form: 3 fields + button in one row on big screens */
+.faculty-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 1rem;
+  align-items: end;
+}
+.faculty-form label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: .35rem; }
+.faculty-form input {
+  width: 100%;
+  font-family: inherit;
+  font-size: .95rem;
+  padding: .75rem .9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  outline: none;
+}
+.faculty-form input:focus { border-color: var(--accent); }
+.faculty-form .auth-btn { width: auto; padding: .8rem 1.6rem; }
+#adminMsg { margin-top: 1rem; margin-bottom: 0; }
+
+/* table */
+.table-scroll { overflow-x: auto; }
+.faculty-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.faculty-table th {
+  text-align: left;
+  background: var(--bg);
+  padding: .8rem 1rem;
+  font-weight: 700;
+  border-bottom: 2px solid var(--line);
+}
+.faculty-table td { padding: .8rem 1rem; border-bottom: 1px solid var(--line); }
+.empty-row { text-align: center; color: var(--muted); padding: 1.5rem !important; }
+
+.status-pill {
+  background: #D6F0EC;
+  color: var(--teal);
+  font-size: .78rem;
+  font-weight: 700;
+  padding: .2rem .7rem;
+  border-radius: 50px;
+}
+.del-btn {
+  background: none;
+  border: 1px solid #DC2626;
+  color: #DC2626;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: .82rem;
+  padding: .35rem .9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.del-btn:hover { background: #DC2626; color: #fff; }
+
+@media (max-width: 800px) {
+  .faculty-form { grid-template-columns: 1fr; }
+  .faculty-form .auth-btn { width: 100%; }
+}

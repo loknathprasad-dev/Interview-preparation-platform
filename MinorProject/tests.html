@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Tests – Interfinix</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        INTERFINIX
+      </a>
+      <div class="nav-links" style="display:flex;">
+        <a href="faculty.html">Dashboard</a>
+        <span class="admin-badge">Faculty</span>
+        <a href="#" id="logoutBtn" class="nav-cta">Log Out</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="admin-section">
+    <div class="admin-wrap">
+
+      <h1 class="admin-title">Student Tests</h1>
+      <p class="admin-sub">Open a test, read the answers and give marks for each one.</p>
+      <p class="auth-msg" id="msg"></p>
+
+      <!-- CHECK PANEL (hidden until a test is opened) -->
+      <div class="admin-card" id="checkCard" style="display:none;">
+        <h2 class="admin-card-title" id="checkTitle">Check Test</h2>
+        <div id="answerList"></div>
+        <button type="button" class="auth-btn" id="saveMarks" style="width:auto; padding:.7rem 1.6rem;">Save Marks</button>
+        <button type="button" class="del-btn" id="closeCheck" style="margin-left:.6rem;">Close</button>
+      </div>
+
+      <div class="admin-card">
+        <h2 class="admin-card-title">All Tests</h2>
+        <div class="table-scroll">
+          <table class="faculty-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Submitted</th>
+                <th>Status</th>
+                <th>Total Marks</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="testBody">
+              <tr><td colspan="6" class="empty-row">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="tests.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Results – Interfinix</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        INTERFINIX
+      </a>
+      <div class="nav-links" style="display:flex;">
+        <a href="student.html">Dashboard</a>
+        <a href="results.html">My Results</a>
+        <span class="admin-badge">Student</span>
+        <a href="#" id="logoutBtn" class="nav-cta">Log Out</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="admin-section">
+    <div class="admin-wrap">
+
+      <h1 class="admin-title">My Results</h1>
+      <p class="admin-sub">Your tests and the marks your faculty has given.</p>
+      <p class="auth-msg" id="msg"></p>
+
+      <!-- DETAIL PANEL (hidden until a test is opened) -->
+      <div class="admin-card" id="detailCard" style="display:none;">
+        <h2 class="admin-card-title" id="detailTitle">Test</h2>
+        <div id="detailList"></div>
+        <button type="button" class="del-btn" id="closeDetail">Close</button>
+      </div>
+
+      <div class="admin-card">
+        <h2 class="admin-card-title">All Tests</h2>
+        <div class="table-scroll">
+          <table class="faculty-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Domain</th>
+                <th>Submitted</th>
+                <th>Status</th>
+                <th>Total Marks</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="resultBody">
+              <tr><td colspan="6" class="empty-row">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="results.js"></script>
+</body>
+
+</html>

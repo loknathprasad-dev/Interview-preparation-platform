@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Queries – Interfinix</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        INTERFINIX
+      </a>
+      <div class="nav-links" style="display:flex;">
+        <a href="student.html">Dashboard</a>
+        <a href="results.html">My Results</a>
+        <a href="myqueries.html">My Queries</a>
+        <span class="admin-badge">Student</span>
+        <a href="#" id="logoutBtn" class="nav-cta">Log Out</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="admin-section">
+    <div class="admin-wrap">
+
+      <h1 class="admin-title">My Queries</h1>
+      <p class="admin-sub">Ask a doubt in any domain. The faculty of that domain will reply here.</p>
+
+      <div class="admin-card">
+        <h2 class="admin-card-title">Ask a New Doubt</h2>
+        <form id="askForm">
+          <label for="domainSelect" style="display:block; font-size:.85rem; font-weight:600; margin-bottom:.35rem;">Domain</label>
+          <select id="domainSelect" required
+            style="font-family:inherit; font-size:.95rem; padding:.6rem .9rem; border:1px solid var(--line); border-radius:8px; background:var(--bg); margin-bottom:1rem;">
+          </select>
+
+          <label for="queryText" style="display:block; font-size:.85rem; font-weight:600; margin-bottom:.35rem;">Your doubt</label>
+          <textarea id="queryText" required placeholder="Write your doubt here"
+            style="width:100%; min-height:110px; font-family:inherit; font-size:.95rem; padding:.75rem .9rem; border:1px solid var(--line); border-radius:8px; background:var(--bg); outline:none; margin-bottom:1rem;"></textarea>
+
+          <button type="submit" class="auth-btn" style="width:auto; padding:.8rem 1.6rem;">Send Doubt</button>
+        </form>
+        <p class="auth-msg" id="msg" style="margin-top:1rem; margin-bottom:0;"></p>
+      </div>
+
+      <div class="admin-card">
+        <h2 class="admin-card-title">My Doubts and Replies</h2>
+        <div id="queryList">Loading...</div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="myqueries.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up – Interfinix</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        INTERFINIX
+      </a>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="login.html" class="nav-cta">Log In</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SIGNUP BOX -->
+  <section class="auth-section">
+    <div class="auth-card">
+
+      <p class="auth-top">Already have an account? <a href="login.html">Log In</a></p>
+
+      <h1 class="auth-title">Student Sign Up</h1>
+      <p class="auth-sub">Make Account and start practice.</p>
+
+      <form id="signupForm">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Write Full Name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Minimum 6 character" required minlength="6" />
+
+        <label for="confirm">Confirm Password</label>
+        <input type="password" id="confirm" placeholder="Write Password Again" required />
+
+        <p class="auth-msg" id="signupMsg"></p>
+
+        <button type="submit" class="auth-btn">Create Account</button>
+      </form>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script src="signup.js"></script>
+</body>
+
+</html>
